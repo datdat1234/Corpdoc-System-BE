@@ -19,14 +19,16 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.5.0",
+    "nodemon": "^3.0.3",
+    "pg": "^8.11.3",
     "randomstring": "^1.1.5",
     "rate-limiter-flexible": "^2.2.1",
     "swagger-jsdoc": "^6.0.8",
     "swagger-ui-express": "^4.1.6"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -3,12 +3,13 @@ import mongoose from 'mongoose';
 import { dbUri } from '../config/index.js';
 
 export default async () => {
-  mongoose.set("strictQuery", false);
-  await mongoose.connect(dbUri,{})
+  mongoose.set('strictQuery', false);
+  await mongoose
+    .connect(dbUri, {})
     .then(() => {
       console.log('Mongodb Connection');
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 };
