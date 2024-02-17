@@ -1,9 +1,13 @@
-// import mongooseLoader from './mongoose.js';
-import postgresLoader from './postgres.js';
 import expressLoader from './express.js';
+import { db, companyDBs } from '../utils/db/index.js';
 
 export default async (app) => {
-  // await mongooseLoader();
-  await postgresLoader();
+  db.query('SELECT * FROM public."Data_Dict"')
+    .then((result) => {
+      console.log(result.rows);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   expressLoader(app);
 };
