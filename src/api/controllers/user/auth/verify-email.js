@@ -67,7 +67,7 @@ export default async (req, res) => {
 
   logger('00058', req.user._id, getText('en', '00058'), 'Info', req);
   return res.status(200).json({
-    resultMessage: { en: getText('en', '00058'), tr: getText('tr', '00058') },
+    resultMessage: { en: getText('en', '00058'), vi: getText('vi', '00058') },
     resultCode: '00058',
     accessToken,
     refreshToken,

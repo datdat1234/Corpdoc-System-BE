@@ -1,7 +1,7 @@
 export default {
-  verificationCodeTitle: 'Verification Code - (App Name)',
+  verificationCodeTitle: 'Verification Code - Corpdoc',
   verificationCodeBody: 'Here is your confirm code:',
-  welcomeCode: 'Welcome to the (App Name),',
+  welcomeCode: 'Welcome to the CorpDoc,',
   '00005': 'Please provide all information to send a code.',
   '00006': 'Access denied. No token provided.',
   '00007': 'Invalid user id.',
@@ -61,7 +61,7 @@ export default {
     'Please provide a name that is longer than 3 letters and shorter than 30 letters.',
   '00078':
     'Valid gender options: female-male-other, plese provide one of them.',
-  '00079': 'Valid language options: tr-en, plese provide one of them.',
+  '00079': 'Valid language options: vi-en, plese provide one of them.',
   '00080': 'Please provide a valid birth date.',
   '00081':
     'Please provide a username that is longer than 3 letters and shorter than 15 letters.',

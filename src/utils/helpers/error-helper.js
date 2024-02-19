@@ -1,6 +1,6 @@
 import logger from '../logger.js';
 import en from '../lang/en.js';
-import tr from '../lang/tr.js';
+import vi from '../lang/vi.js';
 
 export default (code, req, errorMessage) => {
   //NOTE: This control routes every server error to the same lang key.
@@ -11,7 +11,7 @@ export default (code, req, errorMessage) => {
   if (req && req.user && req.user._id) userId = req.user._id;
 
   const enMessage = en[key];
-  const trMessage = tr[key];
+  const trMessage = vi[key];
 
   if (enMessage.includes('server error')) {
     logger(code, userId, errorMessage, 'Server Error', req);
@@ -22,7 +22,7 @@ export default (code, req, errorMessage) => {
   return {
     resultMessage: {
       en: enMessage,
-      tr: trMessage,
+      vi: trMessage,
     },
     resultCode: code,
   };
@@ -44,7 +44,7 @@ export default (code, req, errorMessage) => {
  *       properties:
  *         en:
  *           type: string
- *         tr:
+ *         vi:
  *           type: string
  *     ResultCode:
  *       type: string

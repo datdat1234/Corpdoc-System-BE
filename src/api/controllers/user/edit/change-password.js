@@ -40,7 +40,7 @@ export default async (req, res) => {
 
   logger('00076', req.user._id, getText('en', '00076'), 'Info', req);
   return res.status(200).json({
-    resultMessage: { en: getText('en', '00076'), tr: getText('tr', '00076') },
+    resultMessage: { en: getText('en', '00076'), vi: getText('vi', '00076') },
     resultCode: '00076',
   });
 };

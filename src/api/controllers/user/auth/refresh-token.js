@@ -55,7 +55,7 @@ export default async (req, res) => {
   });
 
   return res.status(200).json({
-    resultMessage: { en: getText('en', '00065'), tr: getText('tr', '00065') },
+    resultMessage: { en: getText('en', '00065'), vi: getText('vi', '00065') },
     resultCode: '00065',
     accessToken,
     refreshToken,

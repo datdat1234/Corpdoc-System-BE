@@ -5,27 +5,27 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import { prefix } from './../config/index.js';
 import routes from './../api/routes/index.js';
-// import { logger } from '../utils/index.js';
+import { logger } from '../utils/index.js';
 // import { rateLimiter } from '../api/middlewares/index.js';
 import { jwtSecretKey } from '../config/index.js';
 import bodyParser from 'body-parser';
 
 export default (app) => {
-  // process.on('uncaughtException', async (error) => {
-  //   // console.log(error);
-  //   logger('00001', '', error.message, 'Uncaught Exception', '');
-  // });
+  process.on('uncaughtException', async (error) => {
+    // console.log(error);
+    logger('00001', null, null, error.message, 'Uncaught Exception', '');
+  });
 
-  // process.on('unhandledRejection', async (ex) => {
-  //   // console.log(ex);
-  //   logger('00002', '', ex.message, 'Unhandled Rejection', '');
-  // });
+  process.on('unhandledRejection', async (ex) => {
+    // console.log(ex);
+    logger('00002', null, null, ex.message, 'Unhandled Rejection', '');
+  });
 
-  // if (!jwtSecretKey) {
-  //   logger('00003', '', 'Jwtprivatekey is not defined', 'Process-Env', '');
-  //   process.exit(1);
-  // }
-
+  if (!jwtSecretKey) {
+    logger('00003', null, null, 'Jwtprivatekey is not defined', 'Process-Env', '');
+    process.exit(1);
+  }
+  
   app.enable('trust proxy');
   app.use(cors());
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -46,7 +46,7 @@ export default (app) => {
       .json({
         resultMessage: {
           en: 'Project is successfully working...',
-          tr: 'Proje başarılı bir şekilde çalışıyor...',
+          vi: 'Dự án đang được hoạt động...',
         },
         resultCode: '00004',
       })
@@ -88,7 +88,7 @@ export default (app) => {
     return res.json({
       resultMessage: {
         en: error.message,
-        tr: error.message,
+        vi: error.message,
       },
       resultCode: resultCode,
     });
