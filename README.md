@@ -150,7 +150,7 @@ AWS_SECRET_ACCESS_KEY=AWS_SECRET_ACCESS_KEY_HERE
 
 ## [API Documentation](#api-documentation)
 
-To view all APIs and learn all the details required for the requests and responses, run the server and go to http://localhost:3000/api/docs/ in your browser. [Swagger](https://swagger.io/) automatically creates this page by using the definitions and descriptions written as comments in the required files.
+To view all APIs and learn all the details required for the requests and responses, run the server and go to http://localhost:3001/api/docs/ in your browser. [Swagger](https://swagger.io/) automatically creates this page by using the definitions and descriptions written as comments in the required files.
 
 ### API Endpoints
 

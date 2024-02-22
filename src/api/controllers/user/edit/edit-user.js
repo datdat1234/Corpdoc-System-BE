@@ -10,7 +10,7 @@ import {
   awsAccessKey,
   awsSecretAccessKey,
   awsRegion,
-  bucketName,
+  imageBucketName,
 } from '../../../../config/index.js';
 import aws from 'aws-sdk';
 const { S3 } = aws;
@@ -55,7 +55,7 @@ export default async (req, res) => {
   let hasError = false;
   if (req.file) {
     const params = {
-      Bucket: bucketName,
+      Bucket: imageBucketName,
       Key:
         turkishToEnglish(user.name).replace(/\s/g, '').toLowerCase() +
         '/' +
