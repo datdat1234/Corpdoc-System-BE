@@ -26,7 +26,7 @@ export default {
   '00035': 'Bạn đã đăng ký thành công.',
   '00036': 'Không tìm thấy tài khoản với địa chỉ email này.',
   '00038': 'Vui lòng cung cấp tất cả các trường bắt buộc!',
-  '00039': 'Vui lòng cung cấp một địa chỉ email hợp lệ!',
+  '00039': 'Vui lòng cung cấp một username hợp lệ!',
   '00040':
     'Vui lòng cung cấp một mật khẩu dài hơn 6 ký tự và ngắn hơn 20 ký tự.',
   '00042': 'Không tìm thấy tài khoản với địa chỉ email này.',

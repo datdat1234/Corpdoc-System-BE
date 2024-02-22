@@ -27,7 +27,7 @@ export default {
   '00035': 'You registered successfully.',
   '00036': 'An account with this email address was not found.',
   '00038': 'Please provide all the required fields!',
-  '00039': 'Please provide a valid email!',
+  '00039': 'Please provide a valid username!',
   '00040':
     'Please provide a password that is longer than 6 letters and shorter than 20 letters.',
   '00042': 'An account with this email address was not found.',

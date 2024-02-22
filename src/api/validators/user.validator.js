@@ -15,7 +15,7 @@ export function validateRegister(body) {
 
 export function validateLogin(body) {
   const schema = Joi.object({
-    email: Joi.string().email().min(3).required(),
+    username: Joi.string().min(3).required(),
     password: Joi.string().min(6).max(20).required(),
   });
   return schema.validate(body);
@@ -23,7 +23,7 @@ export function validateLogin(body) {
 
 export function validateSendVerificationCode(body) {
   const schema = Joi.object({
-    email: Joi.string().email().min(3).required(),
+    username: Joi.string().required(),
   });
   return schema.validate(body);
 }
