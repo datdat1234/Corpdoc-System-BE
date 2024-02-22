@@ -1,4 +1,5 @@
 import { db } from '../../../../utils/db/index.js';
+import { getComConn } from '../../../../utils/index.js';
 import { User, Token } from '../../../../models/index.js';
 import { validateLogin } from '../../../validators/user.validator.js';
 import {
@@ -9,7 +10,8 @@ import {
   signRefreshToken,
 } from '../../../../utils/index.js';
 import bcrypt from 'bcryptjs';
-const { compare } = bcrypt;
+import { convertMap } from '@smithy/smithy-client';
+const { compareSync } = bcrypt;
 
 export default async (req, res) => {
   const { error } = validateLogin(req.body);
@@ -23,51 +25,76 @@ export default async (req, res) => {
       .json(errorHelper(code, req, error.details[0].message));
   }
 
-  const user = await User.findOne({
-    username: req.body.username,
-    password: req.body.password
-    // isActivated: true,
-    // isVerified: true,
-  })
-    // .select('+password')
-    .catch((err) => {
-      return res.status(500).json(errorHelper('00041', req, err.message));
-    });
+  const companyIds = await db
+      .query(`SELECT "CompanyID" FROM "Account" WHERE "Username" = '${req.body.username}'`)
+      .catch((error) => {
+        console.log(error);
+      });
 
-  // if (!user) return res.status(404).json(errorHelper('00042', req));
+  if (!companyIds || !companyIds.rowCount) return res.status(404).json(errorHelper('00042', req));
 
-  // if (!user.isActivated) return res.status(400).json(errorHelper('00043', req));
+  if (companyIds && companyIds.rowCount) {
+    var companyId = companyIds.rows[0].CompanyID;
+  
+    const comConn = getComConn(companyId);
+    
+    const userInfo = await comConn
+        .query(`SELECT "UserID", "Username", "Password", "Name", "Avatar", "Role", "DeptID", "Status" FROM "User" 
+                WHERE "Username" = '${req.body.username}'`)
+        .catch((error) => {
+          console.error(error);
+        });
+  
+    if (userInfo && userInfo.rowCount){
+      const password = userInfo.rows[0].Password;
+      const status = userInfo.rows[0].Status;
+      const id = userInfo.rows[0].UserID;
 
-  // if (!user.isVerified) return res.status(400).json(errorHelper('00044', req));
+      if (status !== "Active") return res.status(400).json(errorHelper('00017'))
 
-  // const match = await compare(req.body.password, user.password);
-  // if (!match) return res.status(400).json(errorHelper('00045', req));
+      const match = bcrypt.compareSync(req.body.password, password);
+      if (!match) return res.status(400).json(errorHelper('00045', req));
 
-  // const accessToken = signAccessToken(user._id);
-  // const refreshToken = signRefreshToken(user._id);
-  // //NOTE: 604800000 ms is equal to 7 days. So, the expiry date of the token is 7 days after.
-  // await Token.updateOne(
-  //   { userId: user._id },
-  //   {
-  //     $set: {
-  //       refreshToken: refreshToken,
-  //       status: true,
-  //       expiresIn: Date.now() + 604800000,
-  //       createdAt: Date.now(),
-  //     },
-  //   }
-  // ).catch((err) => {
-  //   return res.status(500).json(errorHelper('00046', req, err.message));
-  // });
+      const accessToken = signAccessToken(id);
+      const refreshToken = signRefreshToken(id);
 
-  // logger('00047', user._id, getText('en', '00047'), 'Info', req);
-  // return res.status(200).json({
-  //   resultMessage: { en: getText('en', '00047'), vi: getText('vi', '00047') },
-  //   resultCode: '00047',
-  //   user,
-  //   accessToken,
-  //   refreshToken,
-  // });
+      //NOTE: 604800000 ms is equal to 7 days. So, the expiry date of the token is 7 days after.
+      // await Token.updateOne(
+      //   { userId: id },
+      //   {
+      //     $set: {
+      //       refreshToken: refreshToken,
+      //       status: true,
+      //       expiresIn: Date.now() + 604800000,
+      //       createdAt: Date.now(),
+      //     },
+      //   }
+      // ).catch((err) => {
+      //   return res.status(500).json(errorHelper('00046', req, err.message));
+      // });
+
+      logger('00047', id, getText('en', '00047'), 'Info', req);
+
+      var data = {
+        resultMessage: { en: getText('en', '00047'), vi: getText('vi', '00047') },
+        resultCode: '00047',
+        data: {
+          UserID: userInfo.rows[0].UserID,
+          Username: userInfo.rows[0].Username,
+          Name: userInfo.rows[0].Name,
+          Avatar: userInfo.rows[0].Avatar,
+          Role: userInfo.rows[0].Role,
+          Dept: userInfo.rows[0].DeptID,
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+        },
+      };
+
+      return res.send(data);
+    }
+    else return res.status(400).json(errorHelper("00017"));
+  }
+  else return res.status(400).json(errorHelper("00045"));
 };
 
 /**
