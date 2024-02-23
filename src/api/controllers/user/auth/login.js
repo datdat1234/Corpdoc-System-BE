@@ -1,6 +1,8 @@
 import { db } from '#root/utils/index.js';
 import { getComConn } from '#root/utils/index.js';
 import { validateLogin } from '#root/api/validators/user.validator.js';
+import { AccountModel } from '#root/models/index.js';
+import { UserModel } from '#root/models/index.js';
 import {
   errorHelper,
   getText,
@@ -24,25 +26,14 @@ export default async (req, res) => {
       .json(errorHelper(code, req, error.details[0].message));
   }
 
-  const companyIds = await db
-      .query(`SELECT "CompanyID" FROM "Account" WHERE "Username" = '${req.body.username}'`)
-      .catch((error) => {
-        console.log(error);
-      });
+  const companyIds = await AccountModel.getCompanyId([req.body.username]);
 
   if (!companyIds || !companyIds.rowCount) return res.status(404).json(errorHelper('00042', req));
 
   if (companyIds && companyIds.rowCount) {
     var companyId = companyIds.rows[0].CompanyID;
-  
-    const comConn = getComConn(companyId);
     
-    const userInfo = await comConn
-        .query(`SELECT "UserID", "Username", "Password", "Name", "Avatar", "Role", "DeptID", "Status" FROM "User" 
-                WHERE "Username" = '${req.body.username}'`)
-        .catch((error) => {
-          console.error(error);
-        });
+    const userInfo = await UserModel.getUserByUsername(companyId, [req.body.username])
   
     if (userInfo && userInfo.rowCount){
       const password = userInfo.rows[0].Password;
@@ -57,7 +48,7 @@ export default async (req, res) => {
       const accessToken = signAccessToken(id);
       const refreshToken = signRefreshToken(id);
 
-      logger('00047', id, getText('en', '00047'), 'Info', req);
+      // logger('00047', id, getText('en', '00047'), 'Info', req);
 
       var data = {
         resultMessage: { en: getText('en', '00047'), vi: getText('vi', '00047') },

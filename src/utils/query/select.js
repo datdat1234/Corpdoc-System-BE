@@ -9,8 +9,13 @@ export default {
   path: {},
   savedFile: {},
   savedFolder: {},
-  user: {},
-  account: {},
+  user: {
+    getUserByUsername: 
+      'SELECT "UserID", "Username", "Password", "Name", "Avatar", "Role", "DeptID", "Status" FROM "User" WHERE "Username" =$1;',
+  },
+  account: {
+    getCompanyId: 'SELECT "CompanyID" FROM public."Account" WHERE "Username" = $1;',
+  },
   company: {
     getCompanies: 'SELECT * FROM public."Company";',
   },
