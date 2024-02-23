@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { RateLimiterMongo } from 'rate-limiter-flexible';
-import { dbUri } from '../../config/index.js';
-import { errorHelper } from '../../utils/index.js';
+import { dbUri } from '#root/config/index.js';
+import { errorHelper } from '#root/utils/index.js';
 
 mongoose.set('strictQuery', false);
 const mongoConn = mongoose.createConnection(dbUri, {});

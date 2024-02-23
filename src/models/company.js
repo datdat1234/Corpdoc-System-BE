@@ -1,12 +1,12 @@
 import {
-  getComConn,
+  db,
   deleteQueries,
   insertQueries,
   selectQueries,
   updateQueries,
 } from '#root/utils/index.js';
 
-class User {
+class Company {
 }
 
-export default User;
+export default Company;

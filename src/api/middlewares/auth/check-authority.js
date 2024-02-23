@@ -1,5 +1,4 @@
-import { User } from '../../../models/index.js';
-import { errorHelper } from '../../../utils/index.js';
+import { errorHelper } from '#root/utils/index.js';
 
 export async function checkAdmin(req, res, next) {
   const user = await User.findById(req.user._id)

@@ -3,11 +3,10 @@ import cors from 'cors';
 import compression from 'compression';
 import morgan from 'morgan';
 import helmet from 'helmet';
-import { prefix } from './../config/index.js';
-import routes from './../api/routes/index.js';
-import { logger } from '../utils/index.js';
+import { prefix, jwtSecretKey } from '#root/config/index.js';
+import routes from '#root/api/routes/index.js';
+import { logger } from '#root/utils/index.js';
 // import { rateLimiter } from '../api/middlewares/index.js';
-import { jwtSecretKey } from '../config/index.js';
 import bodyParser from 'body-parser';
 
 export default (app) => {

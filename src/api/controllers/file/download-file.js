@@ -1,6 +1,5 @@
-import { errorHelper, logger } from '../../../utils/index.js';
-import { fileBucketName } from '../../../config/index.js';
-import { s3 } from '../../../utils/s3-conn.js';
+import { errorHelper, logger, s3 } from '#root/utils/index.js';
+import { fileBucketName } from '#root/config/index.js';
 import { GetObjectCommand } from '@aws-sdk/client-s3';
 import fs from 'fs';
 

@@ -1,10 +1,9 @@
-import { User, Token } from '../../../models/index.js';
 import {
   generateRandomCode,
   errorHelper,
   getText,
   logger,
-} from '../../../utils/index.js';
+} from '#root/utils/index.js';
 import bcrypt from 'bcryptjs';
 const { hash } = bcrypt;
 
@@ -39,37 +38,3 @@ export default async (req, res) => {
     resultCode: '00092',
   });
 };
-
-/**
- * @swagger
- * /user:
- *    delete:
- *      summary: Delete the User
- *      parameters:
- *        - in: header
- *          name: Authorization
- *          schema:
- *            type: string
- *          description: Put access token here
- *      tags:
- *        - User
- *      responses:
- *        "200":
- *          description: Your account was deleted successfully.
- *          content:
- *              application/json:
- *                  schema:
- *                      $ref: '#/components/schemas/Result'
- *        "401":
- *          description: Invalid token.
- *          content:
- *              application/json:
- *                  schema:
- *                      $ref: '#/components/schemas/Result'
- *        "500":
- *          description: An internal server error occurred, please try again.
- *          content:
- *              application/json:
- *                  schema:
- *                      $ref: '#/components/schemas/Result'
- */

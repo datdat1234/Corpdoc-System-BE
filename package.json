@@ -1,12 +1,11 @@
 {
-  "name": "nodejs-starter-template",
+  "name": "Corpdoc",
   "version": "1.0.0",
-  "description": "You can use this template when you're starting a new project. It contains general concepts, you can customize it according to your needs.",
+  "description": "This project is a milestone for the Bachelor's course at Ho Chi Minh University of Technology. The application is built using the PERN stack (Postgres, Express, React, Node.js)",
   "main": "app.js",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.515.0",
     "@aws-sdk/s3-request-presigner": "^3.515.0",
-    "aws-sdk": "^2.855.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
@@ -34,20 +33,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bahricanyesil/nodejs-starter-template.git"
+    "type": "git"
   },
-  "keywords": [
-    "node.js",
-    "boilerplate",
-    "starter",
-    "template"
-  ],
-  "author": "Bahrican Yesil",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/bahricanyesil/nodejs-starter-template/issues"
-  },
-  "homepage": "https://github.com/bahricanyesil/nodejs-starter-template#readme",
-  "type": "module"
+  "author": "Phuoc Dat, Nhat Ha",
+  "license": "BKU",
+  "type": "module",
+  "imports": {
+    "#root/*": "./src/*"
+  }
 }

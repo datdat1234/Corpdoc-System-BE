@@ -1,6 +1,6 @@
 import pkg from 'jsonwebtoken';
 const { sign } = pkg;
-import { jwtSecretKey, refreshTokenSecretKey } from '../../config/index.js';
+import { jwtSecretKey, refreshTokenSecretKey } from '#root/config/index.js';
 
 export function signAccessToken(userId) {
   const accessToken = sign({ _id: userId }, jwtSecretKey, {

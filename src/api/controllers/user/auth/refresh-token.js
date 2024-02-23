@@ -1,13 +1,12 @@
-import { Token } from '../../../../models/index.js';
-import { validateRefreshToken } from '../../../validators/user.validator.js';
+import { validateRefreshToken } from '#root/api/validators/user.validator.js';
 import {
   errorHelper,
   getText,
   ipHelper,
   signAccessToken,
   signRefreshToken,
-} from '../../../../utils/index.js';
-import { refreshTokenSecretKey } from '../../../../config/index.js';
+} from '#root/utils/index.js';
+import { refreshTokenSecretKey } from '#root/config/index.js';
 import pkg from 'jsonwebtoken';
 const { verify } = pkg;
 
@@ -61,50 +60,3 @@ export default async (req, res) => {
     refreshToken,
   });
 };
-
-/**
- * @swagger
- * /user/refresh-token:
- *    post:
- *      summary: Refreshes the Access Token
- *      requestBody:
- *        description: Valid Refresh Token
- *        required: true
- *        content:
- *          application/json:
- *            schema:
- *              type: object
- *              properties:
- *                refreshToken:
- *                  type: string
- *      tags:
- *        - User
- *      responses:
- *        "200":
- *          description: The token is refreshed successfully.
- *          content:
- *              application/json:
- *                  schema:
- *                      type: object
- *                      properties:
- *                          resultMessage:
- *                              $ref: '#/components/schemas/ResultMessage'
- *                          resultCode:
- *                              $ref: '#/components/schemas/ResultCode'
- *                          accessToken:
- *                              type: string
- *                          refreshToken:
- *                              type: string
- *        "400":
- *          description: Please provide refresh token.
- *          content:
- *              application/json:
- *                  schema:
- *                      $ref: '#/components/schemas/Result'
- *        "500":
- *          description: An internal server error occurred, please try again.
- *          content:
- *              application/json:
- *                  schema:
- *                      $ref: '#/components/schemas/Result'
- */

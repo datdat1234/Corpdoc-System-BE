@@ -6,7 +6,7 @@ import {
   updateQueries,
 } from '#root/utils/index.js';
 
-class User {
+class SavedFile {
 }
 
-export default User;
+export default SavedFile;

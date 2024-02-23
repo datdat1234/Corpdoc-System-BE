@@ -2,18 +2,14 @@ export default {
   swaggerDefinition: {
     openapi: '3.0.0',
     info: {
-      title: 'Nodejs-Starter-Template API',
+      title: 'Corpdoc API',
       version: '1.0.0',
       description:
-        'The API documentation of a boilerplate/starter project for quickly building RESTful APIs using Node.js, Express, and Mongoose.',
-      license: {
-        name: 'MIT',
-        url: 'https://choosealicense.com/licenses/mit/',
-      },
+        'The API documentation of Corpdoc for RESTful APIs using Node.js, Express, and Postgres.',
       contact: {
-        name: 'Bahrican Yesil',
-        url: 'https://github.com/bahricanyesil',
-        email: 'bahricanyesil@gmail.com',
+        name: 'Phuoc Dat, Nhat Ha',
+        url: 'https://github.com/datdat1234',
+        email: 'deltora1st@gmail.com',
       },
     },
     basePath: '/api',
