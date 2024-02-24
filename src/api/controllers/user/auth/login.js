@@ -28,19 +28,23 @@ export default async (req, res) => {
 
   const companyIds = await AccountModel.getCompanyId([req.body.username]);
 
-  if (!companyIds || !companyIds.rowCount) return res.status(404).json(errorHelper('00042', req));
+  if (!companyIds || !companyIds.rowCount)
+    return res.status(404).json(errorHelper('00042', req));
 
   if (companyIds && companyIds.rowCount) {
     var companyId = companyIds.rows[0].CompanyID;
-    
-    const userInfo = await UserModel.getUserByUsername(companyId, [req.body.username])
-  
-    if (userInfo && userInfo.rowCount){
+
+    const userInfo = await UserModel.getUserByUsername(companyId, [
+      req.body.username,
+    ]);
+
+    if (userInfo && userInfo.rowCount) {
       const password = userInfo.rows[0].Password;
       const status = userInfo.rows[0].Status;
       const id = userInfo.rows[0].UserID;
 
-      if (status !== "Active") return res.status(400).json(errorHelper('00017'))
+      if (status !== 'Active')
+        return res.status(400).json(errorHelper('00017'));
 
       const match = bcrypt.compareSync(req.body.password, password);
       if (!match) return res.status(400).json(errorHelper('00045', req));
@@ -51,7 +55,10 @@ export default async (req, res) => {
       // logger('00047', id, getText('en', '00047'), 'Info', req);
 
       var data = {
-        resultMessage: { en: getText('en', '00047'), vi: getText('vi', '00047') },
+        resultMessage: {
+          en: getText('en', '00047'),
+          vi: getText('vi', '00047'),
+        },
         resultCode: '00047',
         data: {
           UserID: userInfo.rows[0].UserID,
@@ -59,15 +66,13 @@ export default async (req, res) => {
           Name: userInfo.rows[0].Name,
           Avatar: userInfo.rows[0].Avatar,
           Role: userInfo.rows[0].Role,
-          Dept: userInfo.rows[0].DeptID,
+          DeptID: userInfo.rows[0].DeptID,
           accessToken: accessToken,
           refreshToken: refreshToken,
         },
       };
 
       return res.send(data);
-    }
-    else return res.status(400).json(errorHelper("00017"));
-  }
-  else return res.status(400).json(errorHelper("00045"));
+    } else return res.status(400).json(errorHelper('00017'));
+  } else return res.status(400).json(errorHelper('00045'));
 };

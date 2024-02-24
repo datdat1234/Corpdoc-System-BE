@@ -3,6 +3,8 @@ export default {
   file: {
     getFileById:
       'SELECT "FileID", "Name" FROM public."File" WHERE "FileID" = $1;',
+    getCriteria: 'SELECT "Criterions" FROM public."File"',
+    getHashValue: 'SELECT "HashValue" FROM public."File"',
   },
   folder: {},
   notification: {},
@@ -10,11 +12,12 @@ export default {
   savedFile: {},
   savedFolder: {},
   user: {
-    getUserByUsername: 
+    getUserByUsername:
       'SELECT "UserID", "Username", "Password", "Name", "Avatar", "Role", "DeptID", "Status" FROM "User" WHERE "Username" =$1;',
   },
   account: {
-    getCompanyId: 'SELECT "CompanyID" FROM public."Account" WHERE "Username" = $1;',
+    getCompanyId:
+      'SELECT "CompanyID" FROM public."Account" WHERE "Username" = $1;',
   },
   company: {
     getCompanies: 'SELECT * FROM public."Company";',
