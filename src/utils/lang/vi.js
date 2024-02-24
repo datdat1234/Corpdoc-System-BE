@@ -23,6 +23,8 @@ export default {
   '00028': 'Vui lòng cung cấp một tên dài hơn 3 ký tự và ngắn hơn 30 ký tự.',
   '00029': 'Vui lòng cung cấp một địa chỉ email hợp lệ!',
   '00032': 'Đã tồn tại một tài khoản với địa chỉ email này.',
+  '00033': 'Đã tồn tại văn bản này.',
+  '00034': 'Tải văn bản thành công.',
   '00035': 'Bạn đã đăng ký thành công.',
   '00036': 'Không tìm thấy tài khoản với username này.',
   '00038': 'Vui lòng cung cấp tất cả các trường bắt buộc!',

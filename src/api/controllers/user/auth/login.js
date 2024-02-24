@@ -29,14 +29,17 @@ export default async (req, res) => {
 
   const companyIds = await AccountModel.getCompanyId([req.body.username]);
 
-  if (!companyIds || !companyIds.rowCount) return res.status(404).json(errorHelper('00042', req));
+  if (!companyIds || !companyIds.rowCount)
+    return res.status(404).json(errorHelper('00042', req));
 
   if (companyIds && companyIds.rowCount) {
     var companyId = companyIds.rows[0].CompanyID;
-    
-    const userInfo = await UserModel.getUserByUsername(companyId, [req.body.username])
-  
-    if (userInfo && userInfo.rowCount){
+
+    const userInfo = await UserModel.getUserByUsername(companyId, [
+      req.body.username,
+    ]);
+
+    if (userInfo && userInfo.rowCount) {
       const password = userInfo.rows[0].Password;
       const status = userInfo.rows[0].Status;
       const id = userInfo.rows[0].UserID;
@@ -53,7 +56,10 @@ export default async (req, res) => {
       logger('00047', logInfo, getText('en', '00047'), 'Info', req);
 
       var data = {
-        resultMessage: { en: getText('en', '00047'), vi: getText('vi', '00047') },
+        resultMessage: {
+          en: getText('en', '00047'),
+          vi: getText('vi', '00047'),
+        },
         resultCode: '00047',
         data: {
           UserID: userInfo.rows[0].UserID,
