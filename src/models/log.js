@@ -8,7 +8,7 @@ import {
 
 class Log {
   addLog(code, companyId, userId, errorMessage, level, ip) {
-    return getComConn(companyId)
+    return db
       .query(insertQueries.log.addLog, [
         code,
         companyId,
