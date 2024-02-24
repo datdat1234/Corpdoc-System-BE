@@ -16,6 +16,7 @@ const { compareSync } = bcrypt;
 
 export default async (req, res) => {
   const { error } = validateLogin(req.body);
+  var logInfo = {userId:'', companyId:''};
   if (error) {
     let code = '00038';
     if (error.details[0].message.includes('username')) code = '00039';
@@ -23,7 +24,7 @@ export default async (req, res) => {
 
     return res
       .status(400)
-      .json(errorHelper(code, req, error.details[0].message));
+      .json(errorHelper(code, logInfo, error.details[0].message));
   }
 
   const companyIds = await AccountModel.getCompanyId([req.body.username]);
@@ -42,17 +43,17 @@ export default async (req, res) => {
       const password = userInfo.rows[0].Password;
       const status = userInfo.rows[0].Status;
       const id = userInfo.rows[0].UserID;
+      logInfo = {userId: id, companyId: companyId};
 
-      if (status !== 'Active')
-        return res.status(400).json(errorHelper('00017'));
+      if (status !== "Active") return res.status(400).json(errorHelper('00017', logInfo))
 
       const match = bcrypt.compareSync(req.body.password, password);
-      if (!match) return res.status(400).json(errorHelper('00045', req));
+      if (!match) return res.status(400).json(errorHelper('00045', logInfo));
 
       const accessToken = signAccessToken(id);
       const refreshToken = signRefreshToken(id);
 
-      // logger('00047', id, getText('en', '00047'), 'Info', req);
+      logger('00047', logInfo, getText('en', '00047'), 'Info', req);
 
       var data = {
         resultMessage: {
@@ -67,12 +68,15 @@ export default async (req, res) => {
           Avatar: userInfo.rows[0].Avatar,
           Role: userInfo.rows[0].Role,
           DeptID: userInfo.rows[0].DeptID,
+          CompanyID: companyId,
           accessToken: accessToken,
           refreshToken: refreshToken,
         },
       };
 
       return res.send(data);
-    } else return res.status(400).json(errorHelper('00017'));
-  } else return res.status(400).json(errorHelper('00045'));
+    }
+    else return res.status(400).json(errorHelper("00017", logInfo));
+  }
+  else return res.status(400).json(errorHelper("00045", logInfo));
 };
