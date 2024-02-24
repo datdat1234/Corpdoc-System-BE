@@ -7,7 +7,7 @@ import {
   logout,
   refreshToken,
 } from '../controllers/user/index.js';
-import { auth, imageUpload } from '../middlewares/index.js';
+import { auth } from '../middlewares/index.js';
 
 const router = Router();
 

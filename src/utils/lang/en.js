@@ -24,6 +24,8 @@ export default {
     'Please provide a name that is longer than 3 letters and shorter than 30 letters.',
   '00029': 'Please provide a valid email!',
   '00032': 'An account with this email address already exists.',
+  '00033': 'This file already exists.',
+  '00034': 'Upload file successfully.',
   '00035': 'You registered successfully.',
   '00036': 'An account with this email address was not found.',
   '00038': 'Please provide all the required fields!',
