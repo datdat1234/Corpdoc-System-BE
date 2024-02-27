@@ -4,6 +4,7 @@ import { serve, setup } from 'swagger-ui-express';
 import { specs, swaggerConfig } from '#root/config/index.js';
 import user from './user.js';
 import file from './file.js';
+import folder from './folder.js';
 const router = Router();
 
 const specDoc = swaggerJsdoc(swaggerConfig);
@@ -13,5 +14,6 @@ router.get(specs, setup(specDoc, { explorer: true }));
 
 router.use('/user', user);
 router.use('/file', file);
+router.use('/folder', folder);
 
 export default router;
