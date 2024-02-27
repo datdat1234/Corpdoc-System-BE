@@ -16,6 +16,7 @@ export { default as getComConn } from './helpers/get-company-db.js';
 export { default as buildRes } from './helpers/build-res.js';
 export { default as formatCriteria } from './helpers/format-criteria.js';
 export { default as hashFile } from './helpers/hash-file.js';
+export { default as findFolderPath } from './helpers/find-folder-path.js';
 
 // LANG
 export { default as getText } from './lang/get-text.js';

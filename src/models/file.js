@@ -16,7 +16,7 @@ class File {
   }
   getCriteria(companyId) {
     return getComConn(companyId)
-      .query(selectQueries.file.getCriteria)
+      .query(selectQueries.folder.getCriteria)
       .catch((error) => {
         console.error(error);
       });
