@@ -3,17 +3,25 @@ export default {
   file: {
     getFileById:
       'SELECT "FileID", "Name" FROM public."File" WHERE "FileID" = $1;',
-    getCriteria: 'SELECT "Criterions" FROM public."File"',
-    getHashValue: 'SELECT "HashValue" FROM public."File"',
+    getHashValue:
+      'SELECT "HashValue" FROM public."File" WHERE "Deleted" = false;',
   },
-  folder: {},
+  folder: {
+    getCriteria:
+      'SELECT "Criterions" FROM public."Folder" WHERE "Deleted" = false;',
+    getFolderByDeptId:
+      'SELECT "FolderID", "Name", "Criterions" FROM public."Folder" WHERE "Deleted" = false AND "IsPrivate" = false AND "DeptID" = $1;',
+  },
   notification: {},
-  path: {},
+  path: {
+    getAncestorIdByDescendantId:
+      'SELECT "AncestorID" FROM public."Path" WHERE "Depth" = 1 AND "DescendantID" = $1;',
+  },
   savedFile: {},
   savedFolder: {},
   user: {
     getUserByUsername:
-      'SELECT "UserID", "Username", "Password", "Name", "Avatar", "Role", "DeptID", "Status" FROM "User" WHERE "Username" =$1;',
+      'SELECT "UserID", "Username", "Password", "Name", "Avatar", "Role", "DeptID", "Status" FROM "User" WHERE "Username" = $1;',
     getUserById:
       'SELECT * FROM "User" WHERE "UserID" = $1;',
   },

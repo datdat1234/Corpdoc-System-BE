@@ -22,7 +22,10 @@ export default async (req, res) => {
     const hash = hashFile(file.buffer);
     const hashValues = await FileModel.getHashValue(companyId);
     if (hashValues.rows.some((row) => row.HashValue === hash)) {
-      res.status(400).json(errorHelper('00033', req));
+      res
+        .status(400)
+        .json(errorHelper('00033', req, 'File exists in the system'));
+      return;
     }
     const criteria = formatCriteria(metadata?.fileCriteria, 'add');
     const s3Params = {
@@ -45,11 +48,11 @@ export default async (req, res) => {
       metadata?.deleted,
       metadata?.status,
       metadata?.isPrivate,
-      null,
-      [],
+      metadata?.newValue,
+      metadata?.shareDeptId || [],
       metadata?.deptId,
       metadata?.userId,
-      null,
+      metadata?.path,
     ];
     const fileInfo = await FileModel.addFile(companyId, fileData);
     res.send(
