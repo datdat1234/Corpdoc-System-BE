@@ -16,7 +16,7 @@ export function validateRegister(body) {
 export function validateLogin(body) {
   const schema = Joi.object({
     username: Joi.string().min(3).required(),
-    password: Joi.string().min(6).max(20).required(),
+    password: Joi.string().min(5).max(20).required(),
   });
   return schema.validate(body);
 }
@@ -52,8 +52,8 @@ export function validateForgotPassword(body) {
 
 export function validateChangePassword(body) {
   const schema = Joi.object({
-    oldPassword: Joi.string().min(6).max(20).required(),
-    newPassword: Joi.string().min(6).max(20).required(),
+    oldPassword: Joi.string().min(5).max(20).required(),
+    newPassword: Joi.string().min(5).max(20).required(),
   });
   return schema.validate(body);
 }
