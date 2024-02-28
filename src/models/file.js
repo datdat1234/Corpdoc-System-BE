@@ -14,13 +14,6 @@ class File {
         console.error(error);
       });
   }
-  getCriteria(companyId) {
-    return getComConn(companyId)
-      .query(selectQueries.folder.getCriteria)
-      .catch((error) => {
-        console.error(error);
-      });
-  }
   addFile(companyId, data) {
     return getComConn(companyId)
       .query(insertQueries.file.addFile, data)
@@ -31,6 +24,13 @@ class File {
   getHashValue(companyId) {
     return getComConn(companyId)
       .query(selectQueries.file.getHashValue)
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  getFileMeetReq(companyId, criterion) {
+    return getComConn(companyId)
+      .query(selectQueries.file.getFileMeetReq, [criterion])
       .catch((error) => {
         console.error(error);
       });
