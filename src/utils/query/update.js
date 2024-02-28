@@ -6,7 +6,12 @@ export default {
   path: {},
   savedFile: {},
   savedFolder: {},
-  user: {},
+  user: {
+    setPassword:
+      'UPDATE "User" SET "Password" = $2 WHERE "UserID" = $1;',
+    setName:
+      'UPDATE "User" SET "Name" = $2 WHERE "UserID" = $1;',
+  },
   account: {},
   company: {},
   dataDict: {},

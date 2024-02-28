@@ -4,6 +4,7 @@ export { default as logout } from './auth/logout.js';
 export { default as refreshToken } from './auth/refresh-token.js';
 
 // EDIT
+export { default as editUserInfo} from './edit/edit-user-info.js';
 export { default as changePassword } from './edit/change-password.js';
 
 // OTHER

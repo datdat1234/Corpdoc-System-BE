@@ -14,6 +14,27 @@ class User {
         console.error(error);
       });
   }
+  getUserById(companyId, id) {
+    return getComConn(companyId)
+      .query(selectQueries.user.getUserById, id)
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  setPassword(companyId, data) {
+    return getComConn(companyId)
+      .query(updateQueries.user.setPassword, data)
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  setName(companyId, data) {
+    return getComConn(companyId)
+      .query(updateQueries.user.setName, data)
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export default User;

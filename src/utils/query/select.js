@@ -14,6 +14,8 @@ export default {
   user: {
     getUserByUsername:
       'SELECT "UserID", "Username", "Password", "Name", "Avatar", "Role", "DeptID", "Status" FROM "User" WHERE "Username" =$1;',
+    getUserById:
+      'SELECT * FROM "User" WHERE "UserID" = $1;',
   },
   account: {
     getCompanyId:
