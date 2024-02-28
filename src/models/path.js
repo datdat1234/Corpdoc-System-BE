@@ -21,6 +21,13 @@ class Path {
         console.error(error);
       });
   }
+  getDescendantIdByAncestorId(companyId, ancestorId) {
+    return getComConn(companyId)
+      .query(selectQueries.path.getDescendantIdByAncestorId, [ancestorId])
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export default Path;
