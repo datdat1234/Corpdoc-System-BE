@@ -1,6 +1,6 @@
 export default (data, type) => {
   if (type === 'remove') {
-    const criteria = data.flatMap((obj) => obj.Criterions);
+    const criteria = data.flatMap((obj) => obj.Criteria);
     const uniqueCriteria = [...new Set(criteria)];
     const handledCriteria = uniqueCriteria.map((criterion) =>
       criterion.replace(/_/g, ' ')

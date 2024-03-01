@@ -16,7 +16,7 @@ export default async (req, res) => {
     );
     const files = await FileModel.getFileMeetReq(
       companyId,
-      criteria.rows[0].Criterions
+      criteria.rows[0].Criteria
     );
     res.send(buildRes({ files: files.rows }));
   } catch (error) {

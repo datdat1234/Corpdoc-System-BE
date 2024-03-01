@@ -11,7 +11,6 @@ export {
 } from './helpers/jwt-token-helper.js';
 export { default as ipHelper } from './helpers/ip-helper.js';
 export { default as errorHelper } from './helpers/error-helper.js';
-export { default as generateRandomCode } from './helpers/generate-random-code.js';
 export { default as getComConn } from './helpers/get-company-db.js';
 export { default as buildRes } from './helpers/build-res.js';
 export { default as formatCriteria } from './helpers/format-criteria.js';

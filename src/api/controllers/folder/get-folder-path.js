@@ -33,7 +33,7 @@ export default async (req, res) => {
 
     // Format Criteria
     folders.map((folder) => {
-      folder.Criterions = formatCriteria([folder], 'remove');
+      folder.Criteria = formatCriteria([folder], 'remove');
     });
 
     res.send(buildRes({ folder: folders }));

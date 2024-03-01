@@ -5,15 +5,15 @@ export default {
       'SELECT "FileID", "Name" FROM public."File" WHERE "FileID" = $1;',
     getHashValue:
       'SELECT "HashValue" FROM public."File" WHERE "Deleted" = false;',
-    getFileMeetReq: 'SELECT * FROM public."File" WHERE (SELECT $1 ::character varying[] <@ "Criterions");',
+    getFileMeetReq: 'SELECT * FROM public."File" WHERE (SELECT $1 ::character varying[] <@ "Criteria");',
   },
   folder: {
     getCriteria:
-      'SELECT "Criterions" FROM public."Folder" WHERE "Deleted" = false;',
+      'SELECT "Criteria" FROM public."Folder" WHERE "Deleted" = false;',
     getCriteriaByFolderId:
-      'SELECT "Criterions" FROM public."Folder" WHERE "Deleted" = false AND "FolderID" = $1;',
+      'SELECT "Criteria" FROM public."Folder" WHERE "Deleted" = false AND "FolderID" = $1;',
     getFolderByDeptId:
-      'SELECT "FolderID", "Name", "Criterions" FROM public."Folder" WHERE "Deleted" = false AND "IsPrivate" = false AND "DeptID" = $1;',
+      'SELECT "FolderID", "Name", "Criteria" FROM public."Folder" WHERE "Deleted" = false AND "IsPrivate" = false AND "DeptID" = $1;',
     getFolderByFolderId:
       'SELECT * FROM public."Folder" WHERE "Deleted" = false AND "IsPrivate" = false AND "FolderID" = $1;',
     getRootFolderByDeptId:

@@ -9,4 +9,3 @@ export { default as changePassword } from './edit/change-password.js';
 
 // OTHER
 export { default as getUser } from './get-user.js';
-export { default as deleteUser } from './delete-user.js';
