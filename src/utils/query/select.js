@@ -1,5 +1,8 @@
 export default {
-  dept: {},
+  dept: {
+    getFirstDept:
+      'SELECT "DeptID" FROM public."Dept" LIMIT 1',
+  },
   file: {
     getFileById:
       'SELECT "FileID", "Name" FROM public."File" WHERE "FileID" = $1;',
