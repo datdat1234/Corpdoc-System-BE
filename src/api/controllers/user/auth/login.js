@@ -3,6 +3,7 @@ import { getComConn } from '#root/utils/index.js';
 import { validateLogin } from '#root/api/validators/user.validator.js';
 import { AccountModel } from '#root/models/index.js';
 import { UserModel } from '#root/models/index.js';
+import { DeptModel } from '#root/models/index.js';
 import {
   errorHelper,
   getText,
@@ -52,6 +53,13 @@ export default async (req, res) => {
 
       const accessToken = signAccessToken(id);
       const refreshToken = signRefreshToken(id);
+
+      if (userInfo.rows[0].Role === 'Admin') {
+        const firstDept = await DeptModel.getFirstDept(companyId);
+        if (firstDept.rowCount) {
+          userInfo.rows[0].DeptID = firstDept.rows[0].DeptID;
+        }
+      }
 
       logger('00047', logInfo, getText('en', '00047'), 'Info', req);
 
