@@ -10,8 +10,8 @@ export default async (database) => {
     database: database,
     password: dbPassword,
     port: dbPort,
-    ssl: {
-      rejectUnauthorized: false,
-    },
+    // ssl: {
+    //   rejectUnauthorized: false,
+    // },
   });
 };
