@@ -14,11 +14,11 @@ const router = Router();
 // AUTH
 router.post('/login', login);
 router.post('/logout', auth, logout);
-router.post('/refresh-token', auth, refreshToken);
+router.post('/refresh-token', refreshToken);
 
 // EDIT
 router.post('/change-password', auth, changePassword);
-router.post('/edit-user-info', editUserInfo);
+router.post('/edit-user-info', auth, editUserInfo);
 
 router.get('/', auth, getUser);
 

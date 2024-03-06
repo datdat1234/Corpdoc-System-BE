@@ -1,40 +1,37 @@
 import { errorHelper } from '#root/utils/index.js';
 import { jwtSecretKey } from '#root/config/index.js';
+import { UserModel } from '#root/models/index.js';
 import jwt from 'jsonwebtoken';
 import pkg from 'jsonwebtoken';
 const { verify } = jwt;
 
 export default async (req, res, next) => {
-  let token = req.body.token;
+  let token = req.header('Authorization');
   if (!token) return res.status(401).json(errorHelper('00006', req));
 
-  // if (token.includes('Bearer'))
-  //   token = req.header('Authorization').replace('Bearer ', '');
+  if (token.includes('Bearer'))
+    token = req.header('Authorization').replace('Bearer ', '');
 
   try {
-    req.user = pkg.verify(token, jwtSecretKey);
+    let userId = pkg.verify(token, jwtSecretKey);
 
-    const exists = await User.exists({
-      _id: req.user._id,
-      isVerified: true,
-      isActivated: true,
-    }).catch((err) => {
-      return res.status(500).json(errorHelper('00008', req, err.message));
-    });
+    var date = new Date();
+    var timestamp = date.getTime();
 
-    if (!exists) return res.status(400).json(errorHelper('00009', req));
+    let logInfo = {companyId: req.body.companyId, userId: userId};
+    
+    if (timestamp - (userId.exp*1000) > 0) return res.status(400).json(errorHelper('00012', logInfo, err.message));
 
-    const tokenExists = await Token.exists({
-      userId: req.user._id,
-      status: true,
-    }).catch((err) => {
-      return res.status(500).json(errorHelper('00010', req, err.message));
-    });
+    const exists = await UserModel.getUserById(req.body.companyId, [userId._id]);
 
-    if (!tokenExists) return res.status(401).json(errorHelper('00011', req));
+    if (!exists || !exists.rowCount) return res.status(400).json(errorHelper('00009', logInfo));
+
+    if (exists.rows[0].Status !== 'Active') return res.status(400).json(errorHelper('00017', logInfo, err.message));
+
+    req.body.userInfo = exists.rows[0];
 
     next();
   } catch (err) {
-    return res.status(401).json(errorHelper('00012', req, err.message));
+    return res.status(400).json(errorHelper('00012', req));
   }
 };
