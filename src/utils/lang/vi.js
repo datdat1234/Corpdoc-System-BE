@@ -2,6 +2,7 @@ export default {
   verificationCodeTitle: 'Mã xác minh - Corpdoc',
   verificationCodeBody: 'Đây là mã xác nhận của bạn:',
   welcomeCode: 'Chào mừng đến với Corpdoc',
+  '00001': 'Tác vụ thành công!',
   '00005': 'Vui lòng cung cấp đầy đủ thông tin để gửi một mã.',
   '00006': 'Truy cập bị từ chối. Không có mã thông báo được cung cấp.',
   '00007': 'ID người dùng không hợp lệ.',

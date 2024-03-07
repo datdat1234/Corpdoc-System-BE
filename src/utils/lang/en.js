@@ -2,6 +2,7 @@ export default {
   verificationCodeTitle: 'Verification Code - Corpdoc',
   verificationCodeBody: 'Here is your confirm code:',
   welcomeCode: 'Welcome to the CorpDoc,',
+  '00001': 'Action success!',
   '00005': 'Please provide all information to send a code.',
   '00006': 'Access denied. No token provided.',
   '00007': 'Invalid user id.',
