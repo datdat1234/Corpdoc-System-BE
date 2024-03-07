@@ -56,14 +56,7 @@ export default async (req, res) => {
     ];
     const fileInfo = await FileModel.addFile(companyId, fileData);
     res.send(
-      buildRes({
-        resultMessage: {
-          en: getText('en', '00034'),
-          vi: getText('vi', '00034'),
-        },
-        resultCode: '00034',
-        fileData,
-      })
+      buildRes(fileData, '00034')
     );
   } catch (error) {
     console.error('Error:', error);

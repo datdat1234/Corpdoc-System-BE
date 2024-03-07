@@ -1,17 +1,14 @@
-export default (data) => {
+import {
+  getText,
+} from '#root/utils/index.js';
+
+export default (data, code = '00001') => {
   return {
-    data: {
-      ...data,
-    }
+    resultMessage: {
+      en: getText('en', code),
+      vi: getText('vi', code),
+    },
+    resultCode: code,
+    data: data,
   };
 };
-// export default (code, data) => {
-//   return {
-//     resultMessage: {
-//       en: getText('en', code),
-//       vi: getText('vi', code),
-//     },
-//     resultCode: code,
-//     data: data,
-//   };
-// };

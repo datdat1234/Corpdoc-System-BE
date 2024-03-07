@@ -52,14 +52,7 @@ export default async (req, res) => {
     }
 
     res.send(
-      buildRes({
-        resultMessage: {
-          en: getText('en', '00093'),
-          vi: getText('vi', '00093'),
-        },
-        resultCode: '00093',
-        folderInfo,
-      })
+      buildRes(folderInfo, '00093')
     );
   } catch (error) {
     console.error('Error:', error);
