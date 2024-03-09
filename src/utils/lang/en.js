@@ -59,7 +59,7 @@ export default {
     'Your old password does not match with the password you entered, please enter the correct password.',
   '00073':
     'Your new password should not be same with the old one, please try a different password.',
-  '00076': 'Your password was changed successfully.',
+  '00076': 'Your information was changed successfully.',
   '00077':
     'Please provide a name that is longer than 3 letters and shorter than 30 letters.',
   '00078':

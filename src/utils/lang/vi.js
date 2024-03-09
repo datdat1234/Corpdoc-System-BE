@@ -59,7 +59,7 @@ export default {
     'Mật khẩu cũ của bạn không khớp với mật khẩu bạn đã nhập, vui lòng nhập đúng mật khẩu.',
   '00073':
     'Mật khẩu mới của bạn không được giống với mật khẩu cũ, vui lòng thử mật khẩu khác.',
-  '00076': 'Mật khẩu của bạn đã được thay đổi thành công.',
+  '00076': 'Thông tin của bạn đã được thay đổi thành công.',
   '00077': 'Vui lòng cung cấp một tên dài hơn 3 ký tự và ngắn hơn 30 ký tự.',
   '00078':
     'Tùy chọn giới tính hợp lệ: nữ-nam-khác, vui lòng cung cấp một trong số chúng.',

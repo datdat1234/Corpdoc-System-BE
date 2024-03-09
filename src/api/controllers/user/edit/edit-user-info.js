@@ -1,5 +1,5 @@
 import { validateChangePassword } from '#root/api/validators/user.validator.js';
-import { errorHelper, logger, getText } from '#root/utils/index.js';
+import { errorHelper, logger, getText, buildRes } from '#root/utils/index.js';
 import { UserModel } from '#root/models/index.js';
 import bcrypt from 'bcryptjs';
 const { hash } = bcrypt;
@@ -40,10 +40,7 @@ export default async (req, res) => {
     }
 
     logger('00076', logInfo, getText('en', '00076'), 'Info', req);
-    return res.status(200).json({
-      resultMessage: { en: getText('en', '00076'), vi: getText('vi', '00076') },
-      resultCode: '00076',
-    });
+    return res.status(200).json(buildRes(null, '00076'));
   
   }
 };

@@ -10,6 +10,7 @@ import {
   logger,
   signAccessToken,
   signRefreshToken,
+  buildRes,
 } from '#root/utils/index.js';
 import bcrypt from 'bcryptjs';
 import { convertMap } from '@smithy/smithy-client';
@@ -65,25 +66,18 @@ export default async (req, res) => {
         logger('00047', logInfo, getText('en', '00047'), 'Info', req);
 
         var data = {
-          resultMessage: {
-            en: getText('en', '00047'),
-            vi: getText('vi', '00047'),
-          },
-          resultCode: '00047',
-          data: {
-            UserID: userInfo.rows[0].UserID,
-            Username: userInfo.rows[0].Username,
-            Name: userInfo.rows[0].Name,
-            Avatar: userInfo.rows[0].Avatar,
-            Role: userInfo.rows[0].Role,
-            DeptID: userInfo.rows[0].DeptID,
-            CompanyID: companyId,
-            accessToken: accessToken,
-            refreshToken: refreshToken,
-          },
+          UserID: userInfo.rows[0].UserID,
+          Username: userInfo.rows[0].Username,
+          Name: userInfo.rows[0].Name,
+          Avatar: userInfo.rows[0].Avatar,
+          Role: userInfo.rows[0].Role,
+          DeptID: userInfo.rows[0].DeptID,
+          CompanyID: companyId,
+          accessToken: accessToken,
+          refreshToken: refreshToken,
         };
 
-        return res.send(data);
+        return res.send(buildRes(data, '00047'));
       }
       else return res.status(400).json(errorHelper("00017", logInfo));
     }
