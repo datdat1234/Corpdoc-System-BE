@@ -11,10 +11,10 @@ import { auth, fileUpload } from '../middlewares/index.js';
 const router = Router();
 
 // EDIT
-router.get('/', viewFile);
-router.get('/download', downloadFile);
-router.get('/criteria', getCriteria);
-router.post('/upload', fileUpload, uploadFile);
-router.get('/get-file', getFile);
+router.get('/', auth, viewFile);
+router.get('/download', auth, downloadFile);
+router.get('/criteria', auth, getCriteria);
+router.post('/upload', auth, fileUpload, uploadFile);
+router.get('/get-file', auth, getFile);
 
 export default router;

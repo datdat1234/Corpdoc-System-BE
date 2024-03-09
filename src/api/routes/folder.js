@@ -11,10 +11,10 @@ import { auth, fileUpload } from '../middlewares/index.js';
 const router = Router();
 
 // EDIT
-router.get('/get-path', getPath);
-router.post('/upload-folder', uploadFolder);
-router.get('/get-child', getChild);
-router.get('/get-root', getRoot);
-router.post('/get-domain-folder', getDomainFolder);
+router.get('/get-path', auth, getPath);
+router.post('/upload-folder', auth, uploadFolder);
+router.get('/get-child', auth, getChild);
+router.get('/get-root', auth, getRoot);
+router.post('/get-domain-folder', auth, getDomainFolder);
 
 export default router;

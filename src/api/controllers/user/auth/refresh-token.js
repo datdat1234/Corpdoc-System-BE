@@ -5,6 +5,7 @@ import {
   ipHelper,
   signAccessToken,
   signRefreshToken,
+  buildRes,
 } from '#root/utils/index.js';
 import { refreshTokenSecretKey } from '#root/config/index.js';
 import pkg from 'jsonwebtoken';
@@ -37,9 +38,5 @@ export default async (req, res) => {
     refreshToken: refreshToken,
   }
 
-  return res.status(200).json({
-    resultMessage: { en: getText('en', '00065'), vi: getText('vi', '00065') },
-    resultCode: '00065',
-    data: data,
-  });
+  return res.status(200).json(buildRes(data, '00065'));
 };

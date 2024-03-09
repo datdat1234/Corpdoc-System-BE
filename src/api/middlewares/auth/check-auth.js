@@ -18,11 +18,11 @@ export default async (req, res, next) => {
     var date = new Date();
     var timestamp = date.getTime();
 
-    let logInfo = {companyId: req.body.companyId, userId: userId};
+    let logInfo = {companyId: req?.body?.companyId ?? req.query.companyId, userId: userId};
     
     if (timestamp - (userId.exp*1000) > 0) return res.status(400).json(errorHelper('00012', logInfo, err.message));
 
-    const exists = await UserModel.getUserById(req.body.companyId, [userId._id]);
+    const exists = await UserModel.getUserById(logInfo.companyId, [userId._id]);
 
     if (!exists || !exists.rowCount) return res.status(400).json(errorHelper('00009', logInfo));
 

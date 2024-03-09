@@ -25,18 +25,8 @@ export default async (req, res) => {
             domainData.push(data.rows[0]);
           }
         }
-        var data = {
-          resultMessage: {
-            en: getText('en', '00047'),
-            vi: getText('vi', '00047'),
-          },
-          resultCode: '00047',
-          data: {
-            domainIds: domainData,
-          },
-        };
     
-        return res.send(data);
+        return res.send(buildRes({domainIds: domainData}));
       }
     }
     return res.status(400).json(errorHelper("00008"));
