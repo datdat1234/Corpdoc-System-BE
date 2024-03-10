@@ -1,5 +1,11 @@
 import pkg from 'pg';
-import { dbUser, dbHost, dbPassword, dbPort } from '#root/config/index.js';
+import {
+  dbUser,
+  dbHost,
+  dbPassword,
+  dbPort,
+  isAllowSSL,
+} from '#root/config/index.js';
 
 const { Pool } = pkg;
 
@@ -10,8 +16,10 @@ export default async (database) => {
     database: database,
     password: dbPassword,
     port: dbPort,
-    // ssl: {
-    //   rejectUnauthorized: false,
-    // },
+    ...(isAllowSSL && {
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    }),
   });
 };

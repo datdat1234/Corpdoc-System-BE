@@ -7,6 +7,7 @@ const {
   DB_PASSWORD,
   DB_MAIN_DATABASE,
   DB_PORT,
+  IS_ALLOW_SSL,
   BE_PORT,
   JWT_SECRET_KEY,
   REFRESH_TOKEN_SECRET_KEY,
@@ -22,6 +23,7 @@ export const dbHost = DB_HOST_NAME;
 export const dbPassword = DB_PASSWORD;
 export const dbMainDatabase = DB_MAIN_DATABASE;
 export const dbPort = DB_PORT || 5432;
+export const isAllowSSL = IS_ALLOW_SSL === 'true';
 export const bePort = BE_PORT || 3001;
 export const jwtSecretKey = JWT_SECRET_KEY;
 export const refreshTokenSecretKey = REFRESH_TOKEN_SECRET_KEY;
