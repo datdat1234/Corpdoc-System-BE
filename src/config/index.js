@@ -5,6 +5,7 @@ const {
   DB_USER_NAME,
   DB_HOST_NAME,
   DB_PASSWORD,
+  DB_MAIN_DATABASE,
   DB_PORT,
   BE_PORT,
   JWT_SECRET_KEY,
@@ -19,6 +20,7 @@ const {
 export const dbUser = DB_USER_NAME;
 export const dbHost = DB_HOST_NAME;
 export const dbPassword = DB_PASSWORD;
+export const dbMainDatabase = DB_MAIN_DATABASE;
 export const dbPort = DB_PORT || 5432;
 export const bePort = BE_PORT || 3001;
 export const jwtSecretKey = JWT_SECRET_KEY;
