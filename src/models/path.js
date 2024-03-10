@@ -28,6 +28,13 @@ class Path {
         console.error(error);
       });
   }
+  getAncestorIdByDepth(companyId, desId, depth) {
+    return getComConn(companyId)
+      .query(selectQueries.path.getAncestorIdByDepth, [desId, depth])
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export default Path;
