@@ -28,6 +28,8 @@ export default {
       'SELECT "AncestorID" FROM public."Path" WHERE "Depth" = 1 AND "DescendantID" = $1;',
     getDescendantIdByAncestorId:
       'SELECT "DescendantID" FROM public."Path" WHERE "Depth" = 1 AND "AncestorID" = $1;',
+    getAncestorIdByDepth:
+      'SELECT "AncestorID" FROM public."Path" WHERE "Depth" = $2 AND "DescendantID" = $1;',
   },
   savedFile: {},
   savedFolder: {},
