@@ -20,7 +20,10 @@ export default async (req, res) => {
       if (domainIds && domainIds.rowCount) {
         let domainData = [];
         for(let i = 0; i < domainIds.rows.length; i++) {
-          let data = await FolderModel.getFolderByFolderId(companyId, domainIds.rows[i].DescendantID);
+          let data = await FolderModel.getFolderByFolderId(
+            companyId, 
+            domainIds.rows[i].DescendantID
+          );
           if (data && data.rowCount) {
             domainData.push(data.rows[0]);
           }

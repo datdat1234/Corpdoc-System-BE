@@ -13,8 +13,14 @@ export default {
     addPath:
       'INSERT INTO public."Path"("AncestorID", "DescendantID", "Depth") VALUES ($1, $2, $3);',
   },
-  savedFile: {},
-  savedFolder: {},
+  savedFile: {
+    setSave:
+      'INSERT INTO public."Saved_File"("FileID", "UserID") VALUES ($1, $2);',
+  },
+  savedFolder: {
+    setSave:
+      'INSERT INTO public."Saved_Folder"("FolderID", "UserID") VALUES ($1, $2);',
+  },
   user: {},
   account: {},
   company: {},

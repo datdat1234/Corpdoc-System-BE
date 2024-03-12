@@ -5,10 +5,11 @@ import {
   findFolderPath,
   formatCriteria,
 } from '#root/utils/index.js';
-import { FolderModel, PathModel } from '#root/models/index.js';
+import { FolderModel, PathModel, SavedFolderModel } from '#root/models/index.js';
 
 export default async (req, res) => {
   try {
+    const userInfo = req.body.userInfo;
     const companyId = req.query.companyId;
     const folderId = req.query.folderId;
     const childId = await PathModel.getDescendantIdByAncestorId(
@@ -22,12 +23,19 @@ export default async (req, res) => {
         companyId,
         folders[i]
       );
+      const isSave = await SavedFolderModel.checkSaveFolderByFolderId(
+        companyId,
+        folders[i],
+        userInfo.UserID
+      )
+      if (isSave.rowCount) folder.rows[0].IsSave = true
+      else folder.rows[0].IsSave = false;
       folderInfo.push(folder.rows[0]);
     }
 
-    res.send(buildRes({ child: folderInfo }));
+    return res.send(buildRes({ child: folderInfo }));
   } catch (error) {
     console.error('Error:', error);
-    res.status(500).json({ error: 'An error occurred' });
+    return res.status(500).json({ error: 'An error occurred' });
   }
 };
