@@ -18,7 +18,10 @@ export default {
     getFolderByDeptId:
       'SELECT "FolderID", "Name", "Criteria" FROM public."Folder" WHERE "Deleted" = false AND "IsPrivate" = false AND "DeptID" = $1;',
     getFolderByFolderId:
-      'SELECT * FROM public."Folder" WHERE "Deleted" = false AND "IsPrivate" = false AND "FolderID" = $1;',
+      `SELECT * FROM "Folder"
+      WHERE "Deleted" = false 
+      AND "IsPrivate" = false 
+      AND "FolderID" = $1;`,
     getRootFolderByDeptId:
       'SELECT * FROM public."Folder" WHERE "Deleted" = false AND "IsPrivate" = false AND "Name" = $1 AND "DeptID" = $2;',
   },
@@ -31,8 +34,14 @@ export default {
     getAncestorIdByDepth:
       'SELECT "AncestorID" FROM public."Path" WHERE "Depth" = $2 AND "DescendantID" = $1;',
   },
-  savedFile: {},
-  savedFolder: {},
+  savedFile: {
+    checkSaveFileByFileId:
+      `SELECT * FROM public."Saved_File" WHERE "FileID" = $1 AND "UserID" = $2;`,
+  },
+  savedFolder: {
+    checkSaveFolderByFolderId:
+      `SELECT * FROM public."Saved_Folder" WHERE "FolderID" = $1 AND "UserID" = $2;`,
+  },
   user: {
     getUserByUsername:
       'SELECT "UserID", "Username", "Password", "Name", "Avatar", "Role", "DeptID", "Status" FROM "User" WHERE "Username" = $1;',

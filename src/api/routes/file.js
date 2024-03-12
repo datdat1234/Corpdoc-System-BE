@@ -5,6 +5,7 @@ import {
   getCriteria,
   uploadFile,
   getFile,
+  setChangeSave,
 } from '../controllers/file/index.js';
 import { auth, fileUpload } from '../middlewares/index.js';
 
@@ -16,5 +17,6 @@ router.get('/download', auth, downloadFile);
 router.get('/criteria', auth, getCriteria);
 router.post('/upload', auth, fileUpload, uploadFile);
 router.get('/get-file', auth, getFile);
+router.post('/set-change-save', auth, setChangeSave);
 
 export default router;
