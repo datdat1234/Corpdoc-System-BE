@@ -15,8 +15,8 @@ const router = Router();
 router.get('/', auth, viewFile);
 router.get('/download', auth, downloadFile);
 router.get('/criteria', auth, getCriteria);
-router.post('/upload', auth, fileUpload, uploadFile);
-router.post('/upload-support-domain', auth, fileUpload, uploadSupportFile);
+router.post('/upload', fileUpload, auth, uploadFile);
+router.post('/upload-support-domain', fileUpload, auth, uploadSupportFile);
 router.get('/get-file', auth, getFile);
 router.post('/set-change-save', auth, setChangeSave);
 
