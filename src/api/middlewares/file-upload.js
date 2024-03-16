@@ -7,7 +7,11 @@ const fileFilter = (_req, file, cb) => {
     file.mimetype === 'image/jpeg' ||
     file.mimetype === 'image/png' ||
     file.mimetype === 'image/svg+xml' ||
-    file.mimetype === 'application/pdf'
+    file.mimetype === 'application/pdf' ||
+    file.mimetype === 'application/msword' ||
+    file.mimetype === 'text/plain' ||
+    file.mimetype === 'application/rtf' ||
+    file.mimetype === 'application/vnd.oasis.opendocument.text'
   ) {
     cb(null, true);
   } else {

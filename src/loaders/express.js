@@ -6,17 +6,14 @@ import helmet from 'helmet';
 import { prefix, jwtSecretKey } from '#root/config/index.js';
 import routes from '#root/api/routes/index.js';
 import { logger } from '#root/utils/index.js';
-// import { rateLimiter } from '../api/middlewares/index.js';
 import bodyParser from 'body-parser';
 
 export default (app) => {
   process.on('uncaughtException', async (error) => {
-    // console.log(error);
     logger('00001', null, null, error.message, 'Uncaught Exception', '');
   });
 
   process.on('unhandledRejection', async (ex) => {
-    // console.log(ex);
     logger('00002', null, null, ex.message, 'Unhandled Rejection', '');
   });
 
@@ -83,7 +80,6 @@ export default (app) => {
       resultCode = '00014';
       level = 'Client Error';
     }
-    // logger(resultCode, req?.user?._id ?? '', error.message, level, req);
     return res.json({
       resultMessage: {
         en: error.message,
