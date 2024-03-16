@@ -25,6 +25,12 @@ export default async (req, res) => {
         .json(errorHelper('00033', req, 'File exists in the system'));
       return;
     }
+    if (metadata?.type !== 'pdf') {
+      res
+        .status(400)
+        .json(errorHelper('00033', req, 'File exists in the system'));
+      return;
+    }
     const criteria = formatCriteria(metadata?.fileCriteria, 'add');
     const s3Params = {
       Bucket: fileBucketName,

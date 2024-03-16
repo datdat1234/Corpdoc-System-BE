@@ -1,0 +1,1 @@
+export { default as getNoti } from './get-noti.js';

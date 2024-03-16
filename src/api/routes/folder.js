@@ -12,7 +12,6 @@ import { auth, fileUpload } from '../middlewares/index.js';
 
 const router = Router();
 
-// EDIT
 router.get('/get-path', auth, getPath);
 router.post('/upload-folder', auth, uploadFolder);
 router.get('/get-child', auth, getChild);

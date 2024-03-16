@@ -73,4 +73,5 @@ export default {
   '00089': 'Thông tin người dùng đã được lấy thành công.',
   '00092': 'Tài khoản của bạn đã được xóa thành công.',
   '00093': 'Tải thư mục thành công.',
+  '00094': 'Hệ thống chưa hỗ trợ loại văn bản này.',
 };

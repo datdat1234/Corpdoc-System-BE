@@ -1,7 +1,5 @@
 import {
   errorHelper,
-  getText,
-  logger,
   buildRes,
 } from '#root/utils/index.js';
 import { FolderModel, PathModel } from '#root/models/index.js';
