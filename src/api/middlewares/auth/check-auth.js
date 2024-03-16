@@ -18,7 +18,7 @@ export default async (req, res, next) => {
     var date = new Date();
     var timestamp = date.getTime();
 
-    let logInfo = {companyId: req?.body?.companyId ?? req.query.companyId, userId: userId};
+    let logInfo = {companyId: req.body.companyId ?? req.query.companyId ?? JSON.parse(req.body.company_id) , userId: userId};
     
     if (timestamp - (userId.exp*1000) > 0) return res.status(400).json(errorHelper('00012', logInfo, err.message));
 
