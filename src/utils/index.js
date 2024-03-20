@@ -20,6 +20,9 @@ export { default as findFolderPath } from './helpers/find-folder-path.js';
 // LANG
 export { default as getText } from './lang/get-text.js';
 
+// Noti
+export { default as getNotiText } from './noti/get-text.js';
+
 // QUERY
 export { default as deleteQueries } from './query/delete.js';
 export { default as insertQueries } from './query/insert.js';
@@ -28,3 +31,7 @@ export { default as updateQueries } from './query/update.js';
 
 // S3
 export { s3 } from './s3/conn.js';
+
+// RabbitMQ
+export { default as amqpProducer } from './rabbitmq/producer.js';
+export { default as amqpConsumer } from './rabbitmq/consumer.js';

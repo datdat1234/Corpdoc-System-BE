@@ -35,6 +35,13 @@ class File {
         console.error(error);
       });
   }
+  updateFilePath(companyId, criteria, fileId) {
+    return getComConn(companyId)
+      .query(updateQueries.file.updateFilePath, [criteria, fileId])
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export default File;

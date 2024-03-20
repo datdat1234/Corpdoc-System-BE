@@ -3,6 +3,7 @@ import { fileBucketName } from '#root/config/index.js';
 import { FileModel } from '#root/models/index.js';
 import { randomUUID } from 'crypto';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
+import { amqpProducer } from '#root/utils/index.js';
 
 export default async (req, res) => {
   try {
@@ -51,6 +52,7 @@ export default async (req, res) => {
       metadata?.path,
     ];
     await FileModel.addFile(companyId, fileData);
+    amqpProducer(companyId + '|' + metadata?.userId + '|' + uuid);
     res.send(buildRes(fileData, '00095'));
   } catch (error) {
     console.error('Error:', error);

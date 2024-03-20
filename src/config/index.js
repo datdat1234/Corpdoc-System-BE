@@ -16,6 +16,13 @@ const {
   STORAGE_AWS_REGION,
   S3_IMAGE_BUCKET_NAME,
   S3_FILE_BUCKET_NAME,
+  AMQP_PROTOCOL,
+  AMQP_USERNAME,
+  AMQP_PASSWORD,
+  AMQP_HOSTNAME,
+  AMQP_VHOST,
+  AMQP_OCR_QUEUE,
+  AMQP_MONGO_QUEUE,
 } = process.env;
 
 export const dbUser = DB_USER_NAME;
@@ -32,5 +39,12 @@ export const awsSecretAccessKey = STORAGE_AWS_SECRET_ACCESS_KEY;
 export const awsRegion = STORAGE_AWS_REGION;
 export const imageBucketName = S3_IMAGE_BUCKET_NAME;
 export const fileBucketName = S3_FILE_BUCKET_NAME;
+export const amqpProtocol = AMQP_PROTOCOL;
+export const amqpUsername = AMQP_USERNAME;
+export const amqpPassword = AMQP_PASSWORD;
+export const amqpHostname = AMQP_HOSTNAME;
+export const amqpVhost = AMQP_VHOST;
+export const amqpOCRQueue = AMQP_OCR_QUEUE;
+export const amqpMongoQueue = AMQP_MONGO_QUEUE;
 export const prefix = '/api';
 export const specs = '/docs';
