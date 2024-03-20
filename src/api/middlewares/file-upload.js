@@ -21,6 +21,6 @@ const fileFilter = (_req, file, cb) => {
 
 export default multer({
   storage: storage,
-  limits: { fileSize: 1000000 },
+  limits: { fileSize: 100000000 },
   fileFilter: fileFilter,
 }).single('file');

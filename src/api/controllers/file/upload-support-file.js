@@ -8,6 +8,10 @@ import { amqpProducer } from '#root/utils/index.js';
 export default async (req, res) => {
   try {
     const metadata = JSON.parse(req.body.file_metadata);
+    if (metadata?.size > 50000000) {
+      res.status(400).json(errorHelper('00097'));
+      return;
+    }
     if (metadata?.type !== 'pdf') {
       res.status(400).json(errorHelper('00094', req));
       return;

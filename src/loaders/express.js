@@ -7,6 +7,7 @@ import { prefix, jwtSecretKey } from '#root/config/index.js';
 import routes from '#root/api/routes/index.js';
 import { logger } from '#root/utils/index.js';
 import bodyParser from 'body-parser';
+import { errorHelper } from '#root/utils/index.js';
 
 export default (app) => {
   process.on('uncaughtException', async (error) => {
@@ -18,10 +19,17 @@ export default (app) => {
   });
 
   if (!jwtSecretKey) {
-    logger('00003', null, null, 'Jwtprivatekey is not defined', 'Process-Env', '');
+    logger(
+      '00003',
+      null,
+      null,
+      'Jwtprivatekey is not defined',
+      'Process-Env',
+      ''
+    );
     process.exit(1);
   }
-  
+
   app.enable('trust proxy');
   app.use(cors());
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,7 +41,6 @@ export default (app) => {
   app.disable('x-powered-by');
   app.disable('etag');
 
-  // app.use(rateLimiter);
   app.use(prefix, routes);
 
   app.get('/', (_req, res) => {
@@ -70,7 +77,9 @@ export default (app) => {
   });
 
   app.use((error, req, res, _next) => {
-    res.status(error.status || 500);
+    res
+      .status(error.status || 500)
+      .json(errorHelper('00096'));
     let resultCode = '00015';
     let level = 'External Error';
     if (error.status === 500) {

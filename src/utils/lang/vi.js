@@ -75,4 +75,6 @@ export default {
   '00093': 'Tải thư mục thành công.',
   '00094': 'Hệ thống chưa hỗ trợ loại văn bản này.',
   '00095': 'Văn bản của bạn đã được tải thành công và đang được hệ thống xử lý.',
+  '00096': 'Lỗi bất ngờ xảy ra, chúng tôi đang xử lý.',
+  '00097': 'Văn bản quá lớn, bạn chỉ có thể tải văn bản dưới 50MB.',
 };
