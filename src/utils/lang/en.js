@@ -74,4 +74,7 @@ export default {
   '00092': 'Your account was deleted successfully.',
   '00093': 'Upload folder successfully.',
   '00094': 'The system does not support this type of document.',
+  '00095': 'Your document has been successfully uploaded and is being processed by the system.',
+  '00096': 'An unexpected error occurred, we are processing it.',
+  '00097': 'The document is too large. You can only upload documents under 50MB.',
 };

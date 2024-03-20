@@ -9,7 +9,7 @@ import {
   setChangeSave,
   getSupportFolder,
 } from '../controllers/folder/index.js';
-import { auth, fileUpload } from '../middlewares/index.js';
+import { auth } from '../middlewares/index.js';
 
 const router = Router();
 

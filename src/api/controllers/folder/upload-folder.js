@@ -51,9 +51,7 @@ export default async (req, res) => {
       ]);
     }
 
-    res.send(
-      buildRes(folderInfo, '00093')
-    );
+    res.send(buildRes(folderInfo, '00093'));
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'An error occurred' });

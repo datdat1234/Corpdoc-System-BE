@@ -8,7 +8,10 @@ export default {
     addFolder:
       'INSERT INTO public."Folder"("FolderID", "Name", "Criteria", "CreatedDate", "Description", "Author", "Deleted", "IsPrivate", "SharedDeptID", "DeptID", "CreatorID") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);',
   },
-  notification: {},
+  notification: {
+    addNotification:
+      'INSERT INTO public."Notification"("NotificationID", "Title", "Description", "Time", "IsSeen", "UserID") VALUES ($1, $2, $3, $4, $5, $6);',
+  },
   path: {
     addPath:
       'INSERT INTO public."Path"("AncestorID", "DescendantID", "Depth") VALUES ($1, $2, $3);',

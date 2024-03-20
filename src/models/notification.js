@@ -14,6 +14,13 @@ class Notification {
         console.error(error);
       });
   }
+  addNoti(companyId, data) {
+    return getComConn(companyId)
+      .query(insertQueries.notification.addNotification, data)
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export default Notification;

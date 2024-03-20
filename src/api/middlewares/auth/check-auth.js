@@ -1,9 +1,7 @@
 import { errorHelper } from '#root/utils/index.js';
 import { jwtSecretKey } from '#root/config/index.js';
 import { UserModel } from '#root/models/index.js';
-import jwt from 'jsonwebtoken';
 import pkg from 'jsonwebtoken';
-const { verify } = jwt;
 
 export default async (req, res, next) => {
   let token = req.header('Authorization');
@@ -18,15 +16,24 @@ export default async (req, res, next) => {
     var date = new Date();
     var timestamp = date.getTime();
 
-    let logInfo = {companyId: req.body.companyId ?? req.query.companyId ?? JSON.parse(req.body.company_id) , userId: userId};
-    
-    if (timestamp - (userId.exp*1000) > 0) return res.status(400).json(errorHelper('00012', logInfo, err.message));
+    let logInfo = {
+      companyId:
+        req.body.companyId ??
+        req.query.companyId ??
+        JSON.parse(req.body.company_id),
+      userId: userId,
+    };
+
+    if (timestamp - userId.exp * 1000 > 0)
+      return res.status(400).json(errorHelper('00012', logInfo, err.message));
 
     const exists = await UserModel.getUserById(logInfo.companyId, [userId._id]);
 
-    if (!exists || !exists.rowCount) return res.status(400).json(errorHelper('00009', logInfo));
+    if (!exists || !exists.rowCount)
+      return res.status(400).json(errorHelper('00009', logInfo));
 
-    if (exists.rows[0].Status !== 'Active') return res.status(400).json(errorHelper('00017', logInfo, err.message));
+    if (exists.rows[0].Status !== 'Active')
+      return res.status(400).json(errorHelper('00017', logInfo, err.message));
 
     req.body.userInfo = exists.rows[0];
 
