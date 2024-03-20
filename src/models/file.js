@@ -35,6 +35,13 @@ class File {
         console.error(error);
       });
   }
+  getFileSupport(companyId, deptId) {
+    return getComConn(companyId)
+    .query(selectQueries.file.getFileSupport, [deptId])
+    .catch((error) => {
+      console.error(error);
+    });
+  }
 }
 
 export default File;

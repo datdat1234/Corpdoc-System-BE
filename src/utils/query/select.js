@@ -9,6 +9,8 @@ export default {
       'SELECT "HashValue" FROM public."File" WHERE "Deleted" = false;',
     getFileMeetReq:
       'SELECT * FROM public."File" WHERE (SELECT $1 ::character varying[] <@ "Criteria");',
+    getFileSupport:
+      'SELECT * FROM public."File" WHERE "DeptID" = $1 AND "Path" IS NOT NULL',
   },
   folder: {
     getCriteria:
@@ -25,7 +27,7 @@ export default {
       'SELECT * FROM public."Folder" WHERE "Deleted" = false AND "IsPrivate" = false AND "Name" = $1 AND "DeptID" = $2;',
   },
   notification: {
-    getNoti: 'SELECT * FROM public."Notification" WHERE "UserID" = $1;',
+    getNoti: 'SELECT * FROM public."Notification" WHERE "UserID" = $1 ORDER BY "Time" DESC;',
   },
   path: {
     getAncestorIdByDescendantId:

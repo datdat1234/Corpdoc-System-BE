@@ -7,6 +7,7 @@ import {
   getDomainFolder,
   getBreadCrumb,
   setChangeSave,
+  getSupportFolder,
 } from '../controllers/folder/index.js';
 import { auth, fileUpload } from '../middlewares/index.js';
 
@@ -19,5 +20,6 @@ router.get('/get-root', auth, getRoot);
 router.post('/get-domain-folder', auth, getDomainFolder);
 router.post('/get-breadcrumb', auth, getBreadCrumb);
 router.post('/set-change-save', auth, setChangeSave);
+router.get('/get-support-folder', auth, getSupportFolder);
 
 export default router;
