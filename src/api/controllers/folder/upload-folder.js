@@ -1,15 +1,14 @@
 import {
-  errorHelper,
-  logger,
-  getText,
   buildRes,
   formatCriteria,
+  postNewFolder,
 } from '#root/utils/index.js';
 import { FolderModel, PathModel } from '#root/models/index.js';
 import { randomUUID } from 'crypto';
 
 export default async (req, res) => {
   try {
+    // Get folder info
     const metadata = req.body;
     const companyId = metadata.companyId;
     const uuid = randomUUID();
@@ -28,7 +27,11 @@ export default async (req, res) => {
       metadata?.deptId,
       metadata?.userId,
     ];
+
+    // Add folder to Postgres
     const folderInfo = await FolderModel.addFolder(companyId, folderData);
+
+    // Set path for the folder
     const parentFolders = [metadata.folderParentInfo];
     while (true) {
       const parentId = await PathModel.getAncestorIdByDescendantId(
@@ -50,6 +53,21 @@ export default async (req, res) => {
         i + 1,
       ]);
     }
+
+    // Add metadata to Elasticsearch
+    const folderMetadata = {
+      Name: metadata?.folderName,
+      Criteria: criteria,
+      CreatedDate: createdDate,
+      Description: metadata?.desc,
+      Author: metadata?.author,
+      Deleted: metadata?.deleted,
+      IsPrivate: metadata?.isPrivate,
+      SharedDeptID: metadata?.shareDeptId || [],
+      DeptID: metadata?.deptId,
+      UploaderID: metadata?.userId,
+    };
+    await postNewFolder(companyId, uuid, folderMetadata);
 
     res.send(buildRes(folderInfo, '00093'));
   } catch (error) {

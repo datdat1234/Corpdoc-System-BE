@@ -9,7 +9,7 @@ import {
 } from '#root/config/index.js';
 import { FileModel, NotificationModel } from '#root/models/index.js';
 import { randomUUID } from 'crypto';
-import { getNotiText } from '#root/utils/index.js';
+import { getNotiText, updateFileOCR } from '#root/utils/index.js';
 
 const amqpUrl = `${amqpProtocol}://${amqpUsername}:${amqpPassword}@${amqpHostname}/${amqpVhost}`;
 
@@ -26,12 +26,13 @@ export default async () => {
         // Parse message
         const data = msg.content.toString();
         const dataJson = JSON.parse(data);
-        
+
         // Get data from message
         const companyId = dataJson?.data?.companyId;
         const userId = dataJson?.data?.userId;
         const fileId = dataJson?.data?.fileId;
         const criteria = dataJson?.data?.criteria;
+        const body = dataJson?.data?.ocr?.body;
         const stringCriteria = criteria.join(', ');
 
         // Update support file path
@@ -58,6 +59,13 @@ export default async () => {
           isSeen,
           userId,
         ]);
+
+        // Update file criteria
+        await updateFileOCR(companyId, fileId, {
+          criteria,
+          body,
+          path: criteria,
+        });
       },
       { noAck: true }
     );

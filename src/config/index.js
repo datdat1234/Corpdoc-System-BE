@@ -23,6 +23,7 @@ const {
   AMQP_VHOST,
   AMQP_OCR_QUEUE,
   AMQP_MONGO_QUEUE,
+  ELASTIC_SEARCH_URL,
 } = process.env;
 
 export const dbUser = DB_USER_NAME;
@@ -46,5 +47,6 @@ export const amqpHostname = AMQP_HOSTNAME;
 export const amqpVhost = AMQP_VHOST;
 export const amqpOCRQueue = AMQP_OCR_QUEUE;
 export const amqpMongoQueue = AMQP_MONGO_QUEUE;
+export const esUrl = ELASTIC_SEARCH_URL;
 export const prefix = '/api';
 export const specs = '/docs';

@@ -1,4 +1,10 @@
-import { errorHelper, buildRes, s3, hashFile } from '#root/utils/index.js';
+import {
+  errorHelper,
+  buildRes,
+  s3,
+  hashFile,
+  postNewFile,
+} from '#root/utils/index.js';
 import { fileBucketName } from '#root/config/index.js';
 import { FileModel } from '#root/models/index.js';
 import { randomUUID } from 'crypto';
@@ -7,7 +13,10 @@ import { amqpProducer } from '#root/utils/index.js';
 
 export default async (req, res) => {
   try {
+    // Parse metadata
     const metadata = JSON.parse(req.body.file_metadata);
+
+    // Validate file
     if (metadata?.size > 50000000) {
       res.status(400).json(errorHelper('00097'));
       return;
@@ -16,6 +25,8 @@ export default async (req, res) => {
       res.status(400).json(errorHelper('00094', req));
       return;
     }
+
+    // Get file info
     const companyId = JSON.parse(req.body.company_id);
     const file = req.file;
     const uuid = randomUUID();
@@ -34,6 +45,8 @@ export default async (req, res) => {
       Key: `${uuid}.pdf`,
       Body: file.buffer,
     };
+
+    // Send file to S3
     const command = new PutObjectCommand(s3Params);
     await s3.send(command);
     const fileData = [
@@ -55,8 +68,34 @@ export default async (req, res) => {
       metadata?.userId,
       metadata?.path,
     ];
+
+    // Add file to Postgres
     await FileModel.addFile(companyId, fileData);
+
+    // Send message to RabbitMQ
     amqpProducer(companyId + '|' + metadata?.userId + '|' + uuid);
+
+    // Add metadata to Elasticsearch
+    const fileMetadata = {
+      Name: metadata?.fileName,
+      Criteria: criteria,
+      CreatedDate: createdDate,
+      Description: metadata?.desc,
+      HashValue: hash,
+      Author: metadata?.author,
+      Type: metadata?.type,
+      Size: metadata?.size,
+      Deleted: metadata?.deleted,
+      Status: metadata?.status,
+      IsPrivate: metadata?.isPrivate,
+      NewValue: metadata?.newValue,
+      SharedDeptID: metadata?.shareDeptId || [],
+      DeptID: metadata?.deptId,
+      UploaderID: metadata?.userId,
+      Path: metadata?.path,
+    };
+    await postNewFile(companyId, uuid, fileMetadata);
+
     res.send(buildRes(fileData, '00095'));
   } catch (error) {
     console.error('Error:', error);

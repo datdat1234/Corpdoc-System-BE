@@ -29,9 +29,12 @@ export { default as insertQueries } from './query/insert.js';
 export { default as selectQueries } from './query/select.js';
 export { default as updateQueries } from './query/update.js';
 
-// S3
-export { s3 } from './s3/conn.js';
-
 // RabbitMQ
 export { default as amqpProducer } from './rabbitmq/producer.js';
 export { default as amqpConsumer } from './rabbitmq/consumer.js';
+
+// S3
+export { s3 } from './s3/conn.js';
+
+// ES APIs
+export { postNewFile, postNewFolder, updateFileOCR } from './es/APIs.js';
