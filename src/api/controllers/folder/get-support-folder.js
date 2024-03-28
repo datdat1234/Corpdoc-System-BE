@@ -14,8 +14,9 @@ class FilePath {
   }
 }
 class FolderInSupport {
-  constructor(name, childs) {
+  constructor(name, type, childs) {
     this.name = name;
+    this.type = type;
     this.childs = childs?? [];
   }
 
@@ -29,6 +30,10 @@ class FolderInSupport {
 
   setFileInfo(fileInfo) {
     this.fileInfo = fileInfo;
+  }
+
+  setType(type) {
+    this.type = type;
   }
 
   getChilds() {
@@ -55,8 +60,9 @@ function findFolderStructure(files, parentName, index) {
   for (let i = 0; i < files.length; i++) {
     if (files[i].path.indexOf(firstCatch) === -1) {
       if (nextChilds.length) {
-        console.log(nextChilds)
-        childs.at(-1).setChilds(childs.at(-1).getChilds().concat(findFolderStructure(nextChilds, childs.at(-1).getName(), index+1)));
+        let next = findFolderStructure(nextChilds, childs.at(-1).getName(), index+1);
+        childs.at(-1).setChilds(childs.at(-1).getChilds().concat(next.childs));
+        childs.at(-1).setType(next.isFinal? 'file' : 'folder');
       } 
       nextChilds = [];
       let pos = getPos(files[i].path, '/', index+1);
@@ -77,10 +83,14 @@ function findFolderStructure(files, parentName, index) {
     }
   }
   if (nextChilds.length) {
-    // console.log(childs.at(-1))
-    childs.at(-1).setChilds(childs.at(-1).getChilds().concat(findFolderStructure(nextChilds, childs.at(-1).getName(), index+1)));
+    let next = findFolderStructure(nextChilds, childs.at(-1).getName(), index+1);
+    childs.at(-1).setChilds(childs.at(-1).getChilds().concat(next.childs));
+    childs.at(-1).setType(next.isFinal? 'file' : 'folder');
   } 
-  return childs;
+  return {
+    childs: childs,
+    isFinal: isFinal,
+  };
 }
 
 export default async (req, res) => {
@@ -93,11 +103,11 @@ export default async (req, res) => {
     let typeQuery = "";
     if (typeDoc === "book") {
       typeQuery = "Sách";
-      dataRes = new FolderInSupport("Thư viện sách", []);
+      dataRes = new FolderInSupport("Thư viện sách", "folder", []);
     }
     else if (typeDoc === "admin-doc") {
       typeQuery = "VBHC";
-      dataRes = new FolderInSupport("Văn bản hành chính", []);
+      dataRes = new FolderInSupport("Văn bản hành chính", "folder", []);
     }
 
     const fileInfo = await FileModel.getFileSupport(companyId, deptId);
@@ -123,7 +133,7 @@ export default async (req, res) => {
 
     filesWithSinglePath.sort((a, b) => {return a.path.localeCompare(b.path);});
 
-    dataRes.setChilds(findFolderStructure(filesWithSinglePath, typeQuery, 1));
+    dataRes.setChilds(findFolderStructure(filesWithSinglePath, typeQuery, 1).childs);
 
     return res.send(buildRes({ dataRes }));
     
