@@ -13,7 +13,6 @@ export const updateFileOCR = (companyId, fileId, fileData) => {
   return post(`${esUrl}/${companyId}_file/_update/${fileId}`, {
     doc: {
       Criteria: fileData?.criteria,
-      Body: fileData?.body,
       Path: fileData?.path,
     },
   });

@@ -1,9 +1,6 @@
 import {
   errorHelper,
-  logger,
   buildRes,
-  findFolderPath,
-  formatCriteria,
 } from "#root/utils/index.js";
 import { FolderModel, PathModel, SavedFolderModel } from "#root/models/index.js";
 

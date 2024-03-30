@@ -1,4 +1,4 @@
-import { errorHelper, logger, s3, buildRes } from '#root/utils/index.js';
+import { s3, buildRes } from '#root/utils/index.js';
 import { fileBucketName } from '#root/config/index.js';
 import { FileModel } from '#root/models/index.js';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';

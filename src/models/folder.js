@@ -49,6 +49,13 @@ class Folder {
         console.error(error);
       });
   }
+  getAuthor(companyId) {
+    return getComConn(companyId)
+      .query(selectQueries.folder.getAuthor, [])
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export default Folder;

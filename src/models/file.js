@@ -49,6 +49,13 @@ class File {
       console.error(error);
     });
   }
+  getAuthor(companyId) {
+    return getComConn(companyId)
+    .query(selectQueries.file.getAuthor)
+    .catch((error) => {
+      console.error(error);
+    });
+  }
 }
 
 export default File;

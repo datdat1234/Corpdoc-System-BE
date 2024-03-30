@@ -14,6 +14,13 @@ class Dept {
         console.error(error);
       });
   }
+  getDeptName(companyId) {
+    return getComConn(companyId)
+      .query(selectQueries.dept.getDeptName, [])
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export default Dept;
