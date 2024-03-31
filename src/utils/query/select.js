@@ -1,6 +1,7 @@
 export default {
   dept: {
     getFirstDept: 'SELECT "DeptID" FROM public."Dept" LIMIT 1',
+    getDeptName: 'SELECT "Name" FROM public."Dept"',
   },
   file: {
     getFileById:
@@ -11,6 +12,8 @@ export default {
       'SELECT * FROM public."File" WHERE (SELECT $1 ::character varying[] <@ "Criteria");',
     getFileSupport:
       'SELECT * FROM public."File" WHERE "DeptID" = $1 AND "Path" IS NOT NULL',
+    getAuthor:
+      'SELECT "Author" FROM public."File"',
   },
   folder: {
     getCriteria:
@@ -25,6 +28,8 @@ export default {
       AND "FolderID" = $1;`,
     getRootFolderByDeptId:
       'SELECT * FROM public."Folder" WHERE "Deleted" = false AND "IsPrivate" = false AND "Name" = $1 AND "DeptID" = $2;',
+    getAuthor:
+      'SELECT "Author" FROM public."Folder"',
   },
   notification: {
     getNoti: 'SELECT * FROM public."Notification" WHERE "UserID" = $1 ORDER BY "Time" DESC;',

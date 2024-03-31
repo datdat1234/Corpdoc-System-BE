@@ -1,0 +1,1 @@
+export { default as getDeptName } from './get-dept-name.js';

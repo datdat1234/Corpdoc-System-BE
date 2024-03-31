@@ -1,4 +1,5 @@
 import {
+  formatCriteria,
   buildRes,
 } from '#root/utils/index.js';
 import { FolderModel } from '#root/models/index.js';
@@ -6,9 +7,7 @@ import { FolderModel } from '#root/models/index.js';
 export default async (req, res) => {
   try {
     const companyId = req.query.companyId;
-    const deptId = req.query.deptId;
-    const rootId = await FolderModel.getRootFolderByDeptId(companyId, deptId);
-    res.send(buildRes({ folder: rootId.rows[0] }));
+    console.log(req.query);
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'An error occurred' });

@@ -1,4 +1,4 @@
-import { errorHelper, getText, logger } from '#root/utils/index.js';
+import { getText, logger } from '#root/utils/index.js';
 
 export default async (req, res) => {
 

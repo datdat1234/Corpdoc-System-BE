@@ -32,7 +32,6 @@ export default async () => {
         const userId = dataJson?.data?.userId;
         const fileId = dataJson?.data?.fileId;
         const criteria = dataJson?.data?.criteria;
-        const body = dataJson?.data?.ocr?.body;
         const stringCriteria = criteria.join(', ');
 
         // Update support file path
@@ -63,7 +62,6 @@ export default async () => {
         // Update file criteria
         await updateFileOCR(companyId, fileId, {
           criteria,
-          body,
           path: criteria,
         });
       },

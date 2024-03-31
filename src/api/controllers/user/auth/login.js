@@ -1,5 +1,3 @@
-import { db } from '#root/utils/index.js';
-import { getComConn } from '#root/utils/index.js';
 import { validateLogin } from '#root/api/validators/user.validator.js';
 import { AccountModel } from '#root/models/index.js';
 import { UserModel } from '#root/models/index.js';
