@@ -6,3 +6,4 @@ export { default as getDomainFolder } from './get-domain-folder.js';
 export { default as getBreadCrumb } from './get-breadcrumb.js';
 export { default as setChangeSave } from './set-change-save.js';
 export { default as getSupportFolder } from './get-support-folder.js';
+export { default as getSavedFolder } from './get-saved-folder.js';

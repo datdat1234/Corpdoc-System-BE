@@ -38,10 +38,22 @@ export default {
       'SELECT "AncestorID" FROM public."Path" WHERE "Depth" = $2 AND "DescendantID" = $1;',
   },
   savedFile: {
-    checkSaveFileByFileId: `SELECT * FROM public."Saved_File" WHERE "FileID" = $1 AND "UserID" = $2;`,
+    checkSaveFileByFileId: 
+      `SELECT * FROM public."Saved_File" WHERE "FileID" = $1 AND "UserID" = $2;`,
+    getFileInfo: 
+      `SELECT public."Saved_File"."FileID", public."File"."Name", public."File"."Size" 
+      FROM public."Saved_File" 
+      LEFT JOIN public."File" ON public."Saved_File"."FileID" = public."File"."FileID"
+      WHERE public."Saved_File"."UserID" = $1;`,
   },
   savedFolder: {
-    checkSaveFolderByFolderId: `SELECT * FROM public."Saved_Folder" WHERE "FolderID" = $1 AND "UserID" = $2;`,
+    checkSaveFolderByFolderId: 
+      `SELECT * FROM public."Saved_Folder" WHERE "FolderID" = $1 AND "UserID" = $2;`,
+    getFolderInfo: 
+      `SELECT public."Saved_Folder"."FolderID", public."Folder"."Name", public."Folder"."Criteria" 
+      FROM public."Saved_Folder" 
+      LEFT JOIN public."Folder" ON public."Saved_Folder"."FolderID" = public."Folder"."FolderID"
+      WHERE public."Saved_Folder"."UserID" = $1;`,
   },
   user: {
     getUserByUsername:

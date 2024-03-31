@@ -28,6 +28,13 @@ class SavedFile {
         console.error(error);
       });
   }
+  getFileInfo(companyId, userId) {
+    return getComConn(companyId)
+      .query(selectQueries.savedFile.getFileInfo, [userId])
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export default SavedFile;
