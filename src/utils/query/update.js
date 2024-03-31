@@ -1,7 +1,7 @@
 export default {
   dept: {},
   file: {
-    updateFilePath: 'UPDATE "File" SET "Path" = $1 WHERE "FileID" = $2;',
+    updateFilePathAndCrit: 'UPDATE "File" SET "Path" = $2, "Criteria" = $3 WHERE "FileID" = $1;',
   },
   folder: {},
   notification: {},

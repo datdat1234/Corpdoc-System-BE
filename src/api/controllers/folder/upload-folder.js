@@ -56,6 +56,7 @@ export default async (req, res) => {
 
     // Add metadata to Elasticsearch
     const folderMetadata = {
+      FolderID: uuid,
       Name: metadata?.folderName,
       Criteria: criteria,
       CreatedDate: createdDate,

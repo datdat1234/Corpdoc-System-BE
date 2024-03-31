@@ -17,18 +17,16 @@ const buildAPIConfig = (api, method, headers = null) => {
 const callAPI = (api, payload = null, method, headers = null) => {
   const config = buildAPIConfig(api, method, headers);
   if (payload) {
-    if (method === 'get') config.params = payload;
-    else config.data = payload;
+    config.data = payload;
   }
-  
+
   return axios(config)
     .then((res) => {
       return res?.data;
     })
     .catch((err) => {
-      res.status(500).json({ error: 'Fetching error!' });
+      console.log('Fetching error: ', err?.message);
     });
-
 };
 
 export const get = (api, params = null, headers = null) => {

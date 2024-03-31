@@ -2,6 +2,8 @@ export default {
   dept: {
     getFirstDept: 'SELECT "DeptID" FROM public."Dept" LIMIT 1',
     getDeptName: 'SELECT "Name" FROM public."Dept"',
+    getDeptIDByName: 'SELECT "DeptID" FROM public."Dept" WHERE "Name" = $1',
+    getDept: 'SELECT * FROM public."Dept"',
   },
   file: {
     getFileById:
@@ -12,8 +14,9 @@ export default {
       'SELECT * FROM public."File" WHERE (SELECT $1 ::character varying[] <@ "Criteria");',
     getFileSupport:
       'SELECT * FROM public."File" WHERE "DeptID" = $1 AND "Path" IS NOT NULL',
-    getAuthor:
-      'SELECT "Author" FROM public."File"',
+    getAuthor: 'SELECT "Author" FROM public."File"',
+    getCriteria:
+      'SELECT "Criteria" FROM public."File" WHERE "Deleted" = false;',
   },
   folder: {
     getCriteria:
@@ -28,11 +31,11 @@ export default {
       AND "FolderID" = $1;`,
     getRootFolderByDeptId:
       'SELECT * FROM public."Folder" WHERE "Deleted" = false AND "IsPrivate" = false AND "Name" = $1 AND "DeptID" = $2;',
-    getAuthor:
-      'SELECT "Author" FROM public."Folder"',
+    getAuthor: 'SELECT "Author" FROM public."Folder"',
   },
   notification: {
-    getNoti: 'SELECT * FROM public."Notification" WHERE "UserID" = $1 ORDER BY "Time" DESC;',
+    getNoti:
+      'SELECT * FROM public."Notification" WHERE "UserID" = $1 ORDER BY "Time" DESC;',
   },
   path: {
     getAncestorIdByDescendantId:
@@ -43,22 +46,20 @@ export default {
       'SELECT "AncestorID" FROM public."Path" WHERE "Depth" = $2 AND "DescendantID" = $1;',
   },
   savedFile: {
-    checkSaveFileByFileId: 
-      `SELECT * FROM public."Saved_File" WHERE "FileID" = $1 AND "UserID" = $2;`,
-    getFileInfo: 
-      `SELECT public."Saved_File"."FileID", public."File"."Name", public."File"."Size" 
+    checkSaveFileByFileId: `SELECT * FROM public."Saved_File" WHERE "FileID" = $1 AND "UserID" = $2;`,
+    getFileInfo: `SELECT public."Saved_File"."FileID", public."File"."Name", public."File"."Size" 
       FROM public."Saved_File" 
       LEFT JOIN public."File" ON public."Saved_File"."FileID" = public."File"."FileID"
       WHERE public."Saved_File"."UserID" = $1;`,
+    getFileByUserID: `SELECT * FROM public."Saved_File" WHERE "UserID" = $1;`,
   },
   savedFolder: {
-    checkSaveFolderByFolderId: 
-      `SELECT * FROM public."Saved_Folder" WHERE "FolderID" = $1 AND "UserID" = $2;`,
-    getFolderInfo: 
-      `SELECT public."Saved_Folder"."FolderID", public."Folder"."Name", public."Folder"."Criteria" 
+    checkSaveFolderByFolderId: `SELECT * FROM public."Saved_Folder" WHERE "FolderID" = $1 AND "UserID" = $2;`,
+    getFolderInfo: `SELECT public."Saved_Folder"."FolderID", public."Folder"."Name", public."Folder"."Criteria" 
       FROM public."Saved_Folder" 
       LEFT JOIN public."Folder" ON public."Saved_Folder"."FolderID" = public."Folder"."FolderID"
       WHERE public."Saved_Folder"."UserID" = $1;`,
+    getFolderByUserID: `SELECT * FROM public."Saved_Folder" WHERE "UserID" = $1;`,
   },
   user: {
     getUserByUsername:
