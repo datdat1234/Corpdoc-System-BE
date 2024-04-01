@@ -37,4 +37,4 @@ export { default as amqpConsumer } from './rabbitmq/consumer.js';
 export { s3 } from './s3/conn.js';
 
 // ES APIs
-export { postNewFile, postNewFolder, updateFileOCR } from './es/APIs.js';
+export { postNewFile, postNewFolder, updateFileOCR, updateFileInfo } from './es/APIs.js';

@@ -6,3 +6,6 @@ export { default as getFile } from './get-file.js';
 export { default as setChangeSave } from './set-change-save.js';
 export { default as getFileAuthor } from './get-author.js';
 export { default as searchFile } from './search-file.js';
+export { default as editFile } from './edit-file.js';
+export { default as getFileInfo } from './get-file-info.js';
+export { default as getUsedStorage } from './get-used-storage.js';

@@ -10,3 +10,5 @@ export { default as getSupportFolder } from './get-support-folder.js';
 export { default as getFolderAuthor } from './get-author.js';
 export { default as searchFolder } from './search-folder.js';
 export { default as getSavedFolder } from './get-saved-folder.js';
+export { default as editFolder } from './edit-folder.js';
+export { default as getFolderInfo } from './get-folder-info.js';

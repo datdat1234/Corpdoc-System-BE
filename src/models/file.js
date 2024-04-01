@@ -5,6 +5,7 @@ import {
   selectQueries,
   updateQueries,
 } from '#root/utils/index.js';
+import { filter } from 'compression';
 
 class File {
   getFileById(companyId, fileId) {
@@ -55,6 +56,20 @@ class File {
     .catch((error) => {
       console.error(error);
     });
+  }
+  updateFileInfoPG(companyId, fileInfo) {
+    return getComConn(companyId)
+      .query(updateQueries.file.updateFileInfoPG, fileInfo)
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  getUsedStorage(companyId, deptId) {
+    return getComConn(companyId)
+      .query(selectQueries.file.getUsedStorage, [deptId])
+      .catch((error) => {
+        console.error(error);
+      });
   }
 }
 

@@ -12,6 +12,8 @@ import {
   getFolderAuthor,
   searchFolder,
   getSavedFolder,
+  editFolder,
+  getFolderInfo,
 } from '../controllers/folder/index.js';
 import { auth } from '../middlewares/index.js';
 
@@ -29,5 +31,7 @@ router.get('/get-support-folder', auth, getSupportFolder);
 router.get('/author', auth, getFolderAuthor);
 router.get('/search', auth, searchFolder);
 router.get('/get-saved-folder', auth, getSavedFolder);
+router.post('/edit-folder', auth, editFolder);
+router.post('/get-folder-info', auth, getFolderInfo);
 
 export default router;

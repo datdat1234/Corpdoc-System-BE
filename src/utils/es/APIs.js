@@ -17,3 +17,14 @@ export const updateFileOCR = (companyId, fileId, fileData) => {
     },
   });
 };
+
+export const updateFileInfo = (companyId, fileId, fileData) => {
+  return post(`${esUrl}/${companyId}_file/_update/${fileId}`, {
+    doc: {
+      Name: fileData?.Name,
+      Criteria: fileData?.Criteria,
+      Description: fileData?.Description,
+      Author: fileData?.Author,
+    },
+  });
+};

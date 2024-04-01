@@ -5,15 +5,17 @@ export default {
   },
   file: {
     getFileById:
-      'SELECT "FileID", "Name" FROM public."File" WHERE "FileID" = $1;',
+      'SELECT "FileID", "Name", "Description", "Criteria", "Author" FROM public."File" WHERE "FileID" = $1;',
     getHashValue:
       'SELECT "HashValue" FROM public."File" WHERE "Deleted" = false;',
     getFileMeetReq:
       'SELECT * FROM public."File" WHERE (SELECT $1 ::character varying[] <@ "Criteria");',
     getFileSupport:
-      'SELECT * FROM public."File" WHERE "DeptID" = $1 AND "Path" IS NOT NULL',
+      'SELECT * FROM public."File" WHERE "DeptID" = $1 AND "Path" IS NOT NULL;',
     getAuthor:
-      'SELECT "Author" FROM public."File"',
+      'SELECT "Author" FROM public."File";',
+    getUsedStorage:
+      'SELECT Sum("Size") FROM public."File" WHERE "DeptID" = $1;',
   },
   folder: {
     getCriteria:

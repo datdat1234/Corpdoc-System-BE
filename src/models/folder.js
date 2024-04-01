@@ -56,6 +56,13 @@ class Folder {
         console.error(error);
       });
   }
+  updateFolderInfo(companyId, folderInfo) {
+    return getComConn(companyId)
+      .query(updateQueries.folder.updateFolderInfo, folderInfo)
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export default Folder;
