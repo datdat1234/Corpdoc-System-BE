@@ -28,3 +28,11 @@ export const updateFileInfo = (companyId, fileId, fileData) => {
     },
   });
 };
+
+export const searchFile = (companyId, searchData) => {
+  return get(`${esUrl}/${companyId}_file/_search`, searchData);
+};
+
+export const searchFolder = (companyId, searchData) => {
+  return get(`${esUrl}/${companyId}_folder/_search`, searchData);
+};

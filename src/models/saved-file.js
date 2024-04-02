@@ -35,6 +35,13 @@ class SavedFile {
         console.error(error);
       });
   }
+  getFileByUserID(companyId, userId) {
+    return getComConn(companyId)
+      .query(selectQueries.savedFile.getFileByUserID, [userId])
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export default SavedFile;

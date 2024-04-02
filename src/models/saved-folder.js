@@ -35,6 +35,13 @@ class SavedFolder {
         console.error(error);
       });
   }
+  getFolderByUserID(companyId, userId) {
+    return getComConn(companyId)
+      .query(selectQueries.savedFolder.getFolderByUserID, [userId])
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export default SavedFolder;

@@ -74,6 +74,7 @@ export default async (req, res) => {
 
     // Add metadata to Elasticsearch
     const fileMetadata = {
+      FileID: uuid,
       Name: metadata?.fileName,
       Criteria: criteria,
       CreatedDate: createdDate,

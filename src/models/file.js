@@ -36,9 +36,9 @@ class File {
         console.error(error);
       });
   }
-  updateFilePath(companyId, criteria, fileId) {
+  updateFilePathAndCrit(companyId, data) {
     return getComConn(companyId)
-      .query(updateQueries.file.updateFilePath, [criteria, fileId])
+      .query(updateQueries.file.updateFilePathAndCrit, data)
       .catch((error) => {
         console.error(error);
       });
@@ -70,6 +70,13 @@ class File {
       .catch((error) => {
         console.error(error);
       });
+  }
+  getCriteria(companyId) {
+    return getComConn(companyId)
+    .query(selectQueries.file.getCriteria)
+    .catch((error) => {
+      console.error(error);
+    });
   }
 }
 

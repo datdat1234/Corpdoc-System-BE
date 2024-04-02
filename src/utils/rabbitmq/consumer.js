@@ -9,7 +9,11 @@ import {
 } from '#root/config/index.js';
 import { FileModel, NotificationModel } from '#root/models/index.js';
 import { randomUUID } from 'crypto';
-import { getNotiText, updateFileOCR } from '#root/utils/index.js';
+import {
+  getNotiText,
+  updateFileOCR,
+  formatCriteria,
+} from '#root/utils/index.js';
 
 const amqpUrl = `${amqpProtocol}://${amqpUsername}:${amqpPassword}@${amqpHostname}/${amqpVhost}`;
 
@@ -31,11 +35,24 @@ export default async () => {
         const companyId = dataJson?.data?.companyId;
         const userId = dataJson?.data?.userId;
         const fileId = dataJson?.data?.fileId;
-        const criteria = dataJson?.data?.criteria;
-        const stringCriteria = criteria.join(', ');
+        const path = dataJson?.data?.criteria;
+        const stringCriteria = path.join(', ');
+
+        // Format criteria
+        const criteria = formatCriteria(path, 'add');
+        const formattedCriteria = [];
+        let tmpArr = [];
+        for (let i = 0; i < criteria.length; i++) {
+          tmpArr = criteria[i].split('/');
+          for (let j = 0; j < tmpArr.length; j++) {
+            formattedCriteria.push(tmpArr[j]);
+          }
+        }
+        const uniqueArray = [...new Set(formattedCriteria)];
 
         // Update support file path
-        await FileModel.updateFilePath(companyId, criteria, fileId);
+        const updateData = [fileId, path, uniqueArray];
+        await FileModel.updateFilePathAndCrit(companyId, updateData);
 
         // Get File Name
         const fileInfo = await FileModel.getFileById(companyId, fileId);
@@ -59,10 +76,10 @@ export default async () => {
           userId,
         ]);
 
-        // Update file criteria
+        // Update file path and criteria
         await updateFileOCR(companyId, fileId, {
-          criteria,
-          path: criteria,
+          criteria: formattedCriteria,
+          path: path,
         });
       },
       { noAck: true }
