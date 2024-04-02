@@ -63,6 +63,13 @@ class Folder {
         console.error(error);
       });
   }
+  getFolderShared(companyId, deptId) {
+    return getComConn(companyId)
+      .query(selectQueries.folder.getFolderShared, [deptId])
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export default Folder;

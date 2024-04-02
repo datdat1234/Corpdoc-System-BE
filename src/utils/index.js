@@ -43,4 +43,5 @@ export {
   updateFileOCR,
   searchFile,
   searchFolder,
+  updateFileInfo
 } from './es/APIs.js';

@@ -78,6 +78,13 @@ class File {
       console.error(error);
     });
   }
+  getFileShared(companyId, deptId) {
+    return getComConn(companyId)
+      .query(selectQueries.file.getFileShared, [deptId])
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export default File;

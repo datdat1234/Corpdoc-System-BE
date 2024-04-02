@@ -19,6 +19,8 @@ export default {
       'SELECT Sum("Size") FROM public."File" WHERE "DeptID" = $1;',
     getCriteria:
       'SELECT "Criteria" FROM public."File" WHERE "Deleted" = false;',
+    getFileShared:
+      `SELECT * FROM public."File" WHERE "sharedDeptID" @> ARRAY['$1']::varchar[]`,
   },
   folder: {
     getCriteria:
@@ -34,6 +36,8 @@ export default {
     getRootFolderByDeptId:
       'SELECT * FROM public."Folder" WHERE "Deleted" = false AND "IsPrivate" = false AND "Name" = $1 AND "DeptID" = $2;',
     getAuthor: 'SELECT "Author" FROM public."Folder"',
+    getFolderShared:
+      `SELECT * FROM public."Folder" WHERE "sharedDeptID" @> ARRAY['$1']::varchar[]`,
   },
   notification: {
     getNoti:
