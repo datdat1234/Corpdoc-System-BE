@@ -34,6 +34,6 @@ router.get('/search', auth, searchFolder);
 router.get('/get-saved-folder', auth, getSavedFolder);
 router.post('/edit-folder', auth, editFolder);
 router.post('/get-folder-info', auth, getFolderInfo);
-router.post('/get-shared-folder', auth, getSharedFolder);
+router.get('/get-shared-folder', auth, getSharedFolder);
 
 export default router;
