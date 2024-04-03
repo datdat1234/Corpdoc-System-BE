@@ -5,7 +5,7 @@ import {
   findFolderPath,
   formatCriteria,
 } from '#root/utils/index.js';
-import { FolderModel, SavedFolderModel, FileModel, SavedFileModel } from '#root/models/index.js';
+import { FolderModel, FileModel } from '#root/models/index.js';
 
 export default async (req, res) => {
   try {
