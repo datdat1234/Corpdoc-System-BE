@@ -15,8 +15,10 @@ import {
   editFolder,
   getFolderInfo,
   getSharedFolder,
+  getDeletedFolder,
+  setChangeDelete
 } from '../controllers/folder/index.js';
-import { auth } from '../middlewares/index.js';
+import { auth, checkAdmin, checkManager } from '../middlewares/index.js';
 
 const router = Router();
 
@@ -35,5 +37,7 @@ router.get('/get-saved-folder', auth, getSavedFolder);
 router.post('/edit-folder', auth, editFolder);
 router.post('/get-folder-info', auth, getFolderInfo);
 router.get('/get-shared-folder', auth, getSharedFolder);
+router.post('/set-change-delete', auth, checkManager, setChangeDelete);
+router.get('/get-deleted-folder', auth, checkManager, getDeletedFolder);
 
 export default router;

@@ -35,6 +35,20 @@ class User {
         console.error(error);
       });
   }
+  getUsersByDeptId(companyId, deptId) {
+    return getComConn(companyId)
+      .query(selectQueries.user.getUsersByDeptId, [deptId])
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  changeStatus(companyId, staffId, changeStatus) {
+    return getComConn(companyId)
+      .query(updateQueries.user.changeStatus, [staffId, changeStatus])
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export default User;

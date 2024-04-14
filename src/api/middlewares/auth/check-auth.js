@@ -25,7 +25,7 @@ export default async (req, res, next) => {
     };
 
     if (timestamp - userId.exp * 1000 > 0)
-      return res.status(400).json(errorHelper('00012', logInfo, err.message));
+      return res.status(400).json(errorHelper('00012', logInfo));
 
     const exists = await UserModel.getUserById(logInfo.companyId, [userId._id]);
 
@@ -33,7 +33,7 @@ export default async (req, res, next) => {
       return res.status(400).json(errorHelper('00009', logInfo));
 
     if (exists.rows[0].Status !== 'Active')
-      return res.status(400).json(errorHelper('00017', logInfo, err.message));
+      return res.status(400).json(errorHelper('00017', logInfo));
 
     req.body.userInfo = exists.rows[0];
 

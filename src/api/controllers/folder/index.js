@@ -13,3 +13,5 @@ export { default as getSavedFolder } from './get-saved-folder.js';
 export { default as editFolder } from './edit-folder.js';
 export { default as getFolderInfo } from './get-folder-info.js';
 export { default as getSharedFolder } from './get-shared-folder.js';
+export { default as getDeletedFolder } from './get-deleted-folder.js';
+export { default as setChangeDelete } from './set-change-delete.js';

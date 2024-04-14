@@ -16,6 +16,7 @@ export { default as buildRes } from './helpers/build-res.js';
 export { default as formatCriteria } from './helpers/format-criteria.js';
 export { default as hashFile } from './helpers/hash-file.js';
 export { default as findFolderPath } from './helpers/find-folder-path.js';
+export { encodeItem, decodeItem } from './helpers/hash-item.js';
 
 // LANG
 export { default as getText } from './lang/get-text.js';

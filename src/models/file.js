@@ -85,6 +85,20 @@ class File {
         console.error(error);
       });
   }
+  getFileDeleted(companyId, deptId) {
+    return getComConn(companyId)
+      .query(selectQueries.file.getFileDeleted, [deptId])
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  setDeleted(companyId, fileId, changeData) {
+    return getComConn(companyId)
+      .query(updateQueries.file.setDeleted, [fileId, changeData])
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 export default File;

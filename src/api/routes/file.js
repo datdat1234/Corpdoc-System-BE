@@ -12,8 +12,9 @@ import {
   editFile,
   getFileInfo,
   getUsedStorage,
+  setChangeDelete,
 } from '../controllers/file/index.js';
-import { auth, fileUpload } from '../middlewares/index.js';
+import { auth, fileUpload, checkAdmin, checkManager } from '../middlewares/index.js';
 
 const router = Router();
 
@@ -29,5 +30,6 @@ router.get('/search', auth, searchFile);
 router.post('/edit-file', auth, editFile);
 router.post('/get-file-info', auth, getFileInfo);
 router.post('/get-used-storage', auth, getUsedStorage);
+router.post('/set-change-delete', auth, checkManager, setChangeDelete);
 
 export default router;
