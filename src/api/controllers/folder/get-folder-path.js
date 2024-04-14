@@ -24,7 +24,7 @@ export default async (req, res) => {
     // Find path of each folder
     folders.map((folder) => {
       const folderPath = findFolderPath(folders, folder.FolderID);
-      let path = folderPath.join('/').replace('Root', '');
+      let path = folderPath.join('/').replace('null', '');
       if (path === '') path = '/';
       folder.Path = path;
     });

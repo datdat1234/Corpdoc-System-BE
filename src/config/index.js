@@ -11,6 +11,7 @@ const {
   BE_PORT,
   JWT_SECRET_KEY,
   REFRESH_TOKEN_SECRET_KEY,
+  SALT_HASH,
   STORAGE_AWS_ACCESS_KEY_ID,
   STORAGE_AWS_SECRET_ACCESS_KEY,
   STORAGE_AWS_REGION,
@@ -35,6 +36,7 @@ export const isAllowSSL = IS_ALLOW_SSL === 'true';
 export const bePort = BE_PORT || 3001;
 export const jwtSecretKey = JWT_SECRET_KEY;
 export const refreshTokenSecretKey = REFRESH_TOKEN_SECRET_KEY;
+export const saltHash = SALT_HASH;
 export const awsAccessKey = STORAGE_AWS_ACCESS_KEY_ID;
 export const awsSecretAccessKey = STORAGE_AWS_SECRET_ACCESS_KEY;
 export const awsRegion = STORAGE_AWS_REGION;

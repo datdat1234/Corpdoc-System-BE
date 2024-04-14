@@ -28,14 +28,14 @@ export default async (req, res) => {
             parentId.rows[0]?.AncestorID
           );
           path = "/ " + folderDetail?.rows[0]?.Name + " " + path;
-          if (folderDetail?.rows[0]?.Name === "Root") break;
+          if (folderDetail?.rows[0]?.Name === null) break;
           if (i === 1) path = "..." + path;
         } else {
           path = ".../ " + path;
           break;
         }
       }
-      path = path.replace("/ Root /", "");
+      path = path.replace("/ null /", "");
       const isSave = await SavedFolderModel.checkSaveFolderByFolderId(
         companyId,
         folderId,

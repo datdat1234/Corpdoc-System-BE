@@ -44,7 +44,7 @@ class Folder {
   }
   getRootFolderByDeptId(companyId, deptId) {
     return getComConn(companyId)
-      .query(selectQueries.folder.getRootFolderByDeptId, ['Root', deptId])
+      .query(selectQueries.folder.getRootFolderByDeptId, [deptId])
       .catch((error) => {
         console.error(error);
       });
@@ -66,6 +66,20 @@ class Folder {
   getFolderShared(companyId, deptId) {
     return getComConn(companyId)
       .query(selectQueries.folder.getFolderShared, [deptId])
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  getFolderDeleted(companyId, deptId) {
+    return getComConn(companyId)
+      .query(selectQueries.folder.getFolderDeleted, [deptId])
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  setDeleted(companyId, folderId, changeData) {
+    return getComConn(companyId)
+      .query(updateQueries.folder.setDeleted, [folderId, changeData])
       .catch((error) => {
         console.error(error);
       });

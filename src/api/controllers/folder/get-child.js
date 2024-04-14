@@ -19,14 +19,16 @@ export default async (req, res) => {
         companyId,
         folders[i]
       );
-      const isSave = await SavedFolderModel.checkSaveFolderByFolderId(
-        companyId,
-        folders[i],
-        userInfo.UserID
-      )
-      if (isSave.rowCount) folder.rows[0].IsSave = true
-      else folder.rows[0].IsSave = false;
-      folderInfo.push(folder.rows[0]);
+      if (folder.rowCount) {
+        const isSave = await SavedFolderModel.checkSaveFolderByFolderId(
+          companyId,
+          folders[i],
+          userInfo.UserID
+        )
+        if (isSave.rowCount) folder.rows[0].IsSave = true
+        else folder.rows[0].IsSave = false;
+        folderInfo.push(folder.rows[0]);
+      }
     }
 
     return res.send(buildRes({ child: folderInfo }));
