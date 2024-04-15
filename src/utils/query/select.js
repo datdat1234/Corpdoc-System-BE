@@ -40,7 +40,7 @@ export default {
       'SELECT * FROM public."Folder" WHERE "Deleted" = false AND "IsPrivate" = false AND "Name" IS NULL AND "DeptID" = $1;',
     getAuthor: 'SELECT "Author" FROM public."Folder"',
     getFolderShared:
-      `SELECT * FROM public."Folder" WHERE "SharedDeptID" @> ARRAY[$1]::uuid[]`,
+      `SELECT * FROM public."Folder" WHERE "SharedDeptID" @> ARRAY[$1]::uuid[] AND "Name" IS NOT NULL`,
     getFolderDeleted:
       `SELECT * FROM public."Folder" WHERE "Deleted" = true AND "DeptID" = $1;`,
   },
@@ -71,7 +71,7 @@ export default {
     getFolderInfo: `SELECT public."Saved_Folder"."FolderID", public."Folder"."Name", public."Folder"."Criteria", public."Folder"."CreatedDate"
       FROM public."Saved_Folder" 
       LEFT JOIN public."Folder" ON public."Saved_Folder"."FolderID" = public."Folder"."FolderID"
-      WHERE public."Saved_Folder"."UserID" = $1 AND public."Folder"."Deleted" = false;`,
+      WHERE public."Saved_Folder"."UserID" = $1 AND public."Folder"."Deleted" = false AND public."Folder"."Name" IS NOT NULL;`,
     getFolderByUserID: `SELECT * FROM public."Saved_Folder" WHERE "UserID" = $1;`,
   },
   user: {
