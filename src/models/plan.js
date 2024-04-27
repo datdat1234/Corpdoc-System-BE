@@ -6,7 +6,8 @@ import {
   updateQueries,
 } from '#root/utils/index.js';
 
-class DataDict {
+class Plan {
+  
 }
 
-export default DataDict;
+export default Plan;

@@ -1,4 +1,4 @@
-import { validateRefreshToken } from '#root/api/validators/user.validator.js';
+import { validateRefreshToken } from '#root/api/validators/account.validator.js';
 import {
   errorHelper,
   signAccessToken,

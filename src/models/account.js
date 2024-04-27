@@ -7,9 +7,16 @@ import {
 } from '#root/utils/index.js';
 
 class Account {
-  getCompanyId(username) {
+  getAccount(username) {
     return db
-      .query(selectQueries.account.getCompanyId, username)
+      .query(selectQueries.account.getAccount, username)
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  getAccountById(acctId) {
+    return db
+      .query(selectQueries.account.getAccountById, acctId)
       .catch((error) => {
         console.error(error);
       });

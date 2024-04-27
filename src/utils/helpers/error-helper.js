@@ -1,4 +1,3 @@
-import logger from './logger.js';
 import en from '../lang/en.js';
 import vi from '../lang/vi.js';
 
@@ -13,12 +12,6 @@ export default (code, req, errorMessage) => {
 
   const enMessage = en[key];
   const trMessage = vi[key];
-
-  if (enMessage.includes('server error')) {
-    logger(code, companyId, userId, errorMessage, 'Server Error', req);
-  } else {
-    logger(code, companyId, userId, errorMessage ?? enMessage, 'Client Error', req);
-  }
 
   return {
     resultMessage: {

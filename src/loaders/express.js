@@ -5,28 +5,11 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import { prefix, jwtSecretKey } from '#root/config/index.js';
 import routes from '#root/api/routes/index.js';
-import { logger } from '#root/utils/index.js';
 import bodyParser from 'body-parser';
 import { errorHelper } from '#root/utils/index.js';
 
 export default (app) => {
-  process.on('uncaughtException', async (error) => {
-    logger('00001', null, null, error.message, 'Uncaught Exception', '');
-  });
-
-  process.on('unhandledRejection', async (ex) => {
-    logger('00002', null, null, ex.message, 'Unhandled Rejection', '');
-  });
-
   if (!jwtSecretKey) {
-    logger(
-      '00003',
-      null,
-      null,
-      'Jwtprivatekey is not defined',
-      'Process-Env',
-      ''
-    );
     process.exit(1);
   }
 
@@ -77,9 +60,7 @@ export default (app) => {
   });
 
   app.use((error, req, res, _next) => {
-    res
-      .status(error.status || 500)
-      .json(errorHelper('00096'));
+    res.status(error.status || 500).json(errorHelper('00096'));
     let resultCode = '00015';
     let level = 'External Error';
     if (error.status === 500) {
