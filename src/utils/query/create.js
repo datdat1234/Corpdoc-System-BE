@@ -2,28 +2,12 @@ export default {
   system: {
     createDb: 'CREATE DATABASE "',
     createSchema: `
-    SET statement_timeout = 0;
-    SET lock_timeout = 0;
-    SET idle_in_transaction_session_timeout = 0;
-    SET client_encoding = 'UTF8';
-    SET standard_conforming_strings = on;
-    SELECT pg_catalog.set_config('search_path', '', false);
-    SET check_function_bodies = false;
-    SET xmloption = content;
-    SET client_min_messages = warning;
-    SET row_security = off;
-    
-    SET default_tablespace = '';
-    
-    SET default_table_access_method = heap;
-    
     CREATE TABLE public."Dept" (
         "DeptID" uuid NOT NULL,
         "Name" character varying NOT NULL,
         "RootFolderID" uuid,
         "Storage" double precision
     );
-    
     
     ALTER TABLE public."Dept" OWNER TO postgres;
     
@@ -48,7 +32,6 @@ export default {
         "UpdatedDate" timestamp with time zone
     );
     
-    
     ALTER TABLE public."File" OWNER TO postgres;
     
     CREATE TABLE public."Folder" (
@@ -66,7 +49,6 @@ export default {
         "UpdatedDate" timestamp with time zone
     );
     
-    
     ALTER TABLE public."Folder" OWNER TO postgres;
     
     CREATE TABLE public."Notification" (
@@ -78,7 +60,6 @@ export default {
         "UserID" uuid NOT NULL
     );
     
-    
     ALTER TABLE public."Notification" OWNER TO postgres;
     
     CREATE TABLE public."Path" (
@@ -87,7 +68,6 @@ export default {
         "Depth" smallint NOT NULL
     );
     
-    
     ALTER TABLE public."Path" OWNER TO postgres;
     
     CREATE TABLE public."Saved_File" (
@@ -95,14 +75,12 @@ export default {
         "UserID" uuid NOT NULL
     );
     
-    
     ALTER TABLE public."Saved_File" OWNER TO postgres;
     
     CREATE TABLE public."Saved_Folder" (
         "FolderID" uuid NOT NULL,
         "UserID" uuid NOT NULL
     );
-    
     
     ALTER TABLE public."Saved_Folder" OWNER TO postgres;
     
