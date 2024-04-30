@@ -68,13 +68,20 @@ export default {
   '00080': 'Please provide a valid birth date.',
   '00081':
     'Please provide a username that is longer than 3 letters and shorter than 15 letters.',
+  '00082': 'Block company successfully.',
   '00084': 'There is already a user with this username, please enter another.',
   '00086': 'Your profile information was changed successfully.',
   '00089': 'The user information has gotten successfully.',
   '00092': 'Your account was deleted successfully.',
   '00093': 'Upload folder successfully.',
   '00094': 'The system does not support this type of document.',
-  '00095': 'Your document has been successfully uploaded and is being processed by the system.',
+  '00095':
+    'Your document has been successfully uploaded and is being processed by the system.',
   '00096': 'An unexpected error occurred, we are processing it.',
-  '00097': 'The document is too large. You can only upload documents under 50MB.',
+  '00097':
+    'The document is too large. You can only upload documents under 50MB.',
+  '00098': 'Update company information successfuly.',
+  '00099': 'Create company successfuly.',
+  '00100': 'Do not modify the plan to become the old plan.',
+  '00101': 'Modify the plan successfully.',
 };

@@ -12,6 +12,7 @@ const {
   JWT_SECRET_KEY,
   REFRESH_TOKEN_SECRET_KEY,
   SALT_HASH,
+  DEFAULT_PASSWORD,
 } = process.env;
 
 export const dbUser = DB_USER_NAME;
@@ -24,4 +25,5 @@ export const bePort = BE_PORT || 3001;
 export const jwtSecretKey = JWT_SECRET_KEY;
 export const refreshTokenSecretKey = REFRESH_TOKEN_SECRET_KEY;
 export const saltHash = SALT_HASH;
+export const defPass = DEFAULT_PASSWORD;
 export const prefix = '/api/system';

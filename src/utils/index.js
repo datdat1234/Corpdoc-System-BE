@@ -20,6 +20,7 @@ export { default as getText } from './lang/get-text.js';
 export { default as getNotiText } from './noti/get-text.js';
 
 // QUERY
+export { default as createQueries } from './query/create.js';
 export { default as deleteQueries } from './query/delete.js';
 export { default as insertQueries } from './query/insert.js';
 export { default as selectQueries } from './query/select.js';

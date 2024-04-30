@@ -68,6 +68,7 @@ export default {
   '00080': 'Vui lòng cung cấp ngày sinh hợp lệ.',
   '00081':
     'Vui lòng cung cấp tên người dùng dài hơn 3 ký tự và ngắn hơn 15 ký tự.',
+  '00082': 'Chặn công ty thành công.',
   '00084': 'Đã có người dùng với tên người dùng này, vui lòng nhập tên khác.',
   '00086': 'Thông tin hồ sơ của bạn đã được thay đổi thành công.',
   '00089': 'Thông tin người dùng đã được lấy thành công.',
@@ -77,4 +78,8 @@ export default {
   '00095': 'Văn bản của bạn đã được tải thành công và đang được hệ thống xử lý.',
   '00096': 'Lỗi bất ngờ xảy ra, chúng tôi đang xử lý.',
   '00097': 'Văn bản quá lớn, bạn chỉ có thể tải văn bản dưới 50MB.',
+  '00098': 'Cập nhật thông tin công ty thành công.',
+  '00099': 'Tạo công ty thành công.',
+  '00100': 'Không được chỉnh sửa kế hoạch thành kế hoạch cũ.',
+  '00101': 'Chỉnh sửa kế hoạch thành công.',
 };
