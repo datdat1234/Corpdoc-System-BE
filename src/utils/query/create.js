@@ -11,10 +11,8 @@ export default {
     SET check_function_bodies = false;
     SET xmloption = content;
     SET client_min_messages = warning;
-    SET row_security = off;
-    
+    SET row_security = off; 
     SET default_tablespace = '';
-    
     SET default_table_access_method = heap;
     
     CREATE TABLE public."Dept" (
@@ -23,9 +21,7 @@ export default {
         "RootFolderID" uuid,
         "Storage" double precision
     );
-    
-    ALTER TABLE public."Dept" OWNER TO postgres;
-    
+        
     CREATE TABLE public."File" (
         "FileID" uuid NOT NULL,
         "Name" character varying NOT NULL,
@@ -46,9 +42,7 @@ export default {
         "Path" text[],
         "UpdatedDate" timestamp with time zone
     );
-    
-    ALTER TABLE public."File" OWNER TO postgres;
-    
+        
     CREATE TABLE public."Folder" (
         "FolderID" uuid NOT NULL,
         "Name" character varying,
@@ -63,9 +57,7 @@ export default {
         "CreatorID" uuid NOT NULL,
         "UpdatedDate" timestamp with time zone
     );
-    
-    ALTER TABLE public."Folder" OWNER TO postgres;
-    
+        
     CREATE TABLE public."Notification" (
         "NotificationID" uuid NOT NULL,
         "Title" text,
@@ -74,31 +66,23 @@ export default {
         "IsSeen" boolean NOT NULL,
         "UserID" uuid NOT NULL
     );
-    
-    ALTER TABLE public."Notification" OWNER TO postgres;
-    
+        
     CREATE TABLE public."Path" (
         "AncestorID" uuid NOT NULL,
         "DescendantID" uuid NOT NULL,
         "Depth" smallint NOT NULL
     );
-    
-    ALTER TABLE public."Path" OWNER TO postgres;
-    
+        
     CREATE TABLE public."Saved_File" (
         "FileID" uuid NOT NULL,
         "UserID" uuid NOT NULL
     );
-    
-    ALTER TABLE public."Saved_File" OWNER TO postgres;
-    
+        
     CREATE TABLE public."Saved_Folder" (
         "FolderID" uuid NOT NULL,
         "UserID" uuid NOT NULL
     );
-    
-    ALTER TABLE public."Saved_Folder" OWNER TO postgres;
-    
+        
     CREATE TABLE public."User" (
         "UserID" uuid NOT NULL,
         "Username" character varying NOT NULL,
