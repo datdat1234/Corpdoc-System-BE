@@ -25,3 +25,9 @@ export { default as deleteQueries } from './query/delete.js';
 export { default as insertQueries } from './query/insert.js';
 export { default as selectQueries } from './query/select.js';
 export { default as updateQueries } from './query/update.js';
+
+// ES APIs
+export {
+  postNewFileIndex,
+  postNewFolderIndex
+} from './es/APIs.js';

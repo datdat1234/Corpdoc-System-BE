@@ -7,6 +7,7 @@ import {
 import { buildRes } from '#root/utils/index.js';
 import { randomUUID } from 'crypto';
 import { defPass } from '#root/config/index.js';
+import { postNewFileIndex, postNewFolderIndex } from '#root/utils/index.js';
 
 export default async (req, res) => {
   try {
@@ -15,6 +16,8 @@ export default async (req, res) => {
     const comId = randomUUID();
 
     await insertCom(comName, planId, comId);
+    await postNewFileIndex(comId);
+    await postNewFolderIndex(comId);
 
     res.send(buildRes({ comId: comId }, '00099'));
   } catch (error) {

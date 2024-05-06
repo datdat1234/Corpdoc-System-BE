@@ -13,6 +13,7 @@ const {
   REFRESH_TOKEN_SECRET_KEY,
   SALT_HASH,
   DEFAULT_PASSWORD,
+  ELASTIC_SEARCH_URL,
 } = process.env;
 
 export const dbUser = DB_USER_NAME;
@@ -26,4 +27,5 @@ export const jwtSecretKey = JWT_SECRET_KEY;
 export const refreshTokenSecretKey = REFRESH_TOKEN_SECRET_KEY;
 export const saltHash = SALT_HASH;
 export const defPass = DEFAULT_PASSWORD;
+export const esUrl = ELASTIC_SEARCH_URL;
 export const prefix = '/api/system';
