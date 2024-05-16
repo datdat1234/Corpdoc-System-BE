@@ -116,7 +116,7 @@ export async function insertCom(comName, planId, comId) {
       adminUserNames[i],
       'Admin',
       'Active',
-      null,
+      deptIDs[0],
     ]);
   }
 
