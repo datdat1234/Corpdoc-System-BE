@@ -6,7 +6,7 @@ import {
 } from '#root/models/index.js';
 import { buildRes } from '#root/utils/index.js';
 import { randomUUID } from 'crypto';
-import { defPass } from '#root/config/index.js';
+import { defAcctPass, defComPass } from '#root/config/index.js';
 import { postNewFileIndex, postNewFolderIndex } from '#root/utils/index.js';
 
 export default async (req, res) => {
@@ -57,7 +57,7 @@ export async function insertCom(comName, planId, comId) {
   await CompanyModel.addCompany([
     comId,
     comName,
-    defPass,
+    defComPass,
     'Active',
     null,
     planId,
@@ -68,7 +68,7 @@ export async function insertCom(comName, planId, comId) {
     await AccountModel.addAccount([
       randomUUID(),
       adminUserNames[i],
-      defPass,
+      defAcctPass,
       comId,
     ]);
   }
@@ -78,7 +78,7 @@ export async function insertCom(comName, planId, comId) {
     await AccountModel.addAccount([
       randomUUID(),
       mgrUserNames[i],
-      defPass,
+      defAcctPass,
       comId,
     ]);
   }
@@ -88,7 +88,7 @@ export async function insertCom(comName, planId, comId) {
     await AccountModel.addAccount([
       randomUUID(),
       staffUserNames[i],
-      defPass,
+      defAcctPass,
       comId,
     ]);
   }
@@ -112,7 +112,7 @@ export async function insertCom(comName, planId, comId) {
     await SystemModel.addUser(comId, [
       adminUserIDs[i],
       adminUserNames[i],
-      defPass,
+      defAcctPass,
       adminUserNames[i],
       'Admin',
       'Active',
@@ -125,7 +125,7 @@ export async function insertCom(comName, planId, comId) {
     await SystemModel.addUser(comId, [
       mgrUserIDs[i],
       mgrUserNames[i],
-      defPass,
+      defAcctPass,
       mgrUserNames[i],
       'Manager',
       'Active',
@@ -138,7 +138,7 @@ export async function insertCom(comName, planId, comId) {
     await SystemModel.addUser(comId, [
       staffUserIDs[i],
       staffUserNames[i],
-      defPass,
+      defAcctPass,
       staffUserNames[i],
       'Staff',
       'Active',

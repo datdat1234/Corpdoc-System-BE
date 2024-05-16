@@ -8,7 +8,7 @@ import { buildRes, errorHelper } from '#root/utils/index.js';
 import { randomUUID } from 'crypto';
 import { blockUser } from './block-company.js';
 import { insertCom } from './add-company.js';
-import { defPass } from '#root/config/index.js';
+import { defAcctPass } from '#root/config/index.js';
 
 let newPlan;
 let oldPlan;
@@ -111,7 +111,7 @@ async function uptPlan(comId, newPlan, oldPlan) {
     await AccountModel.addAccount([
       randomUUID(),
       adminUserNames[i],
-      defPass,
+      defAcctPass,
       comId,
     ]);
   }
@@ -121,7 +121,7 @@ async function uptPlan(comId, newPlan, oldPlan) {
     await AccountModel.addAccount([
       randomUUID(),
       mgrUserNames[i],
-      defPass,
+      defAcctPass,
       comId,
     ]);
   }
@@ -131,7 +131,7 @@ async function uptPlan(comId, newPlan, oldPlan) {
     await AccountModel.addAccount([
       randomUUID(),
       staffUserNames[i],
-      defPass,
+      defAcctPass,
       comId,
     ]);
   }
@@ -151,7 +151,7 @@ async function uptPlan(comId, newPlan, oldPlan) {
     await SystemModel.addUser(comId, [
       adminUserIDs[i],
       adminUserNames[i],
-      defPass,
+      defAcctPass,
       adminUserNames[i],
       'Admin',
       'Active',
@@ -164,7 +164,7 @@ async function uptPlan(comId, newPlan, oldPlan) {
     await SystemModel.addUser(comId, [
       mgrUserIDs[i],
       mgrUserNames[i],
-      defPass,
+      defAcctPass,
       mgrUserNames[i],
       'Manager',
       'Active',
@@ -177,7 +177,7 @@ async function uptPlan(comId, newPlan, oldPlan) {
     await SystemModel.addUser(comId, [
       staffUserIDs[i],
       staffUserNames[i],
-      defPass,
+      defAcctPass,
       staffUserNames[i],
       'Staff',
       'Active',

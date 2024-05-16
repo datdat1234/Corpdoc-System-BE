@@ -12,7 +12,8 @@ const {
   JWT_SECRET_KEY,
   REFRESH_TOKEN_SECRET_KEY,
   SALT_HASH,
-  DEFAULT_PASSWORD,
+  DEFAULT_ACCT_PASSWORD,
+  DEFAULT_COM_PASSWORD,
   ELASTIC_SEARCH_URL,
 } = process.env;
 
@@ -26,6 +27,7 @@ export const bePort = BE_PORT || 3001;
 export const jwtSecretKey = JWT_SECRET_KEY;
 export const refreshTokenSecretKey = REFRESH_TOKEN_SECRET_KEY;
 export const saltHash = SALT_HASH;
-export const defPass = DEFAULT_PASSWORD;
+export const defAcctPass = DEFAULT_ACCT_PASSWORD;
+export const defComPass = DEFAULT_COM_PASSWORD;
 export const esUrl = ELASTIC_SEARCH_URL;
 export const prefix = '/api/system';
