@@ -43,6 +43,8 @@ export async function insertCom(comName, planId, comId) {
   const rootFolderIDs = genUuidArr(manageAcctNum);
   const deptIDs = genUuidArr(manageAcctNum);
 
+  const privateFolderID = genUuidArr(1);
+
   const adminUserNames = adminUserIDs.map(
     (id, i) => `Admin${paddedStr(i + 1)}_Com${paddedStrCom}`
   );
@@ -164,10 +166,29 @@ export async function insertCom(comName, planId, comId) {
     ]);
   }
 
+  // Add private folder
+  await SystemModel.addFolder(comId, [
+    privateFolderID[0],
+    null,
+    [],
+    new Date(),
+    null,
+    null,
+    false,
+    true,
+    [],
+    null,
+    adminUserIDs[0],
+    new Date(),
+  ]);
+
   // Add paths
   for (let i = 0; i < manageAcctNum; i++) {
     await SystemModel.addPath(comId, [rootFolderIDs[i], rootFolderIDs[i], 0]);
   }
+
+  // Add private path
+  await SystemModel.addPath(comId, [privateFolderID[0], privateFolderID[0], 0]);
 
   // Add constraints
   await SystemModel.createCstr(comId);
