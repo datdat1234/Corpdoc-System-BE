@@ -40,7 +40,7 @@ export default {
         "Deleted" boolean NOT NULL,
         "IsPrivate" boolean NOT NULL,
         "SharedDeptID" uuid[] NOT NULL,
-        "DeptID" uuid NOT NULL,
+        "DeptID" uuid,
         "CreatorID" uuid NOT NULL,
         "UpdatedDate" timestamp with time zone
     );
